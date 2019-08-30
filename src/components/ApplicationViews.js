@@ -1,7 +1,12 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import Login from "./auth/Login";
+import Chat from "./chat/ChatList";
+import RegisterModal from "./auth/RegisterModal";
 
 export default class ApplicationViews extends Component {
+  
+  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
   render() {
     return (
@@ -9,10 +14,22 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/" render={props => {
-            return null
+            if (this.isAuthenticated()) {
+              return <Chat />
+            }
+            return <Login {...props}/>
             // Remove null and return the component which will show news articles
           }}
         />
+
+        <Route
+          path="/" render={props => {
+            return <RegisterModal {...props}/>
+            // Remove null and return the component which will show news articles
+          }}
+        />
+
+      
 
         <Route
           path="/friends" render={props => {
