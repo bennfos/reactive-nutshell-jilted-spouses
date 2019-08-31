@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Chat from "./chat/ChatList";
 import EventMain from "./events/EventMain"
 import Auth from "./auth/Auth"
+import NewsMain from "./news/NewsMain"
 
 export default class ApplicationViews extends Component {
 
@@ -43,6 +44,13 @@ export default class ApplicationViews extends Component {
         <Route
           path="/tasks" render={props => {
             return null
+            // Remove null and return the component which will show the user's tasks
+          }}
+        />
+
+        <Route
+          path="/news" render={props => {
+            return <NewsMain {...props} />
             // Remove null and return the component which will show the user's tasks
           }}
         />
