@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Chat from "./chat/ChatList";
 import EventMain from "./events/EventMain"
 import Auth from "./auth/Auth"
+import FriendMain from "./friends/FriendMain";
 
 export default class ApplicationViews extends Component {
 
@@ -22,8 +23,8 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+            // Render FriendList component when user goes to '/friends'
+            return <FriendMain {...props} />
           }}
         />
 
