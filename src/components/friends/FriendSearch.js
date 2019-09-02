@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FriendDataManager from './FriendDataManager';
+import FriendResult from './FriendResult';
 
 class FriendSearch extends Component {
     constructor(props) {
@@ -63,6 +64,18 @@ class FriendSearch extends Component {
                                     </div>
                                 </fieldset>
                             </form>
+
+                            
+
+                            <div className="searchResults">
+                                {this.state.foundUsers.map(user => 
+                                    <FriendResult 
+                                        key={user.id}
+                                        user={user}
+                                        {...this.props}
+                                    />
+                                )}
+                            </div>
                         </ModalBody>
                         <ModalFooter>
                             <Button color="primary" onClick={this.searchUsers}>Search</Button>{' '}
