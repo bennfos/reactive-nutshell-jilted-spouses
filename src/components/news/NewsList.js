@@ -6,18 +6,7 @@ import { Button } from 'reactstrap';
 
 
 class NewsList extends Component {
-    state = {
-        news: []
-    }
 
-componentDidMount(){
-    NewsDataManager.getAllNews()
-    .then((news) => {
-        this.setState({
-            news: news
-        })
-    })
-}
 
 
 // deleteAnimal = id => {
@@ -32,11 +21,13 @@ componentDidMount(){
 //     })
 //   }
 
+
+
 render(){
     return(
     <React.Fragment>
       <div className="newsContainerCards">
-        {this.state.news.map(newsItem =>
+        {this.props.state.news.map(newsItem =>
           <NewsCard
             key={newsItem.id}
             news={newsItem}

@@ -8,6 +8,7 @@ class NewsCard extends Component {
           <h3>Title: {this.props.news.title}</h3>
           <p>Link:{this.props.news.url}</p>
           <p>Synopsis: {this.props.news.synopsis}</p>
+          <p>{this.props.news.timestamp}</p>
           {/* <button type="button"
           onClick={() => {this.props.history.push(`/animals/${this.props.animal.id}/edit`)}}>Edit</button>
           <button type="button" onClick={() => this.props.deleteAnimal(this.props.animal.id)}>Discharge</button> */}
