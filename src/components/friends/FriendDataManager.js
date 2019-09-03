@@ -14,5 +14,15 @@ export default {
             },
             body: JSON.stringify(connectionObject)
         }).then(response => response.json());
+    },
+
+    getConnections(activeUser) {
+        return fetch(`${remoteURL}/connections/?userId=${activeUser}`)
+            .then(response => response.json())
+    },
+
+    getUser(id) {
+        return fetch(`${remoteURL}/users/${id}`)
+            .then(response => response.json());
     }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FriendDataManager from './FriendDataManager';
 
 class FriendResult extends Component {
     state = {
@@ -10,7 +9,6 @@ class FriendResult extends Component {
     constructConnection = (event) => {
         event.preventDefault();
         this.props.toggle();
-        console.log("constructConnection");
         const message = `Please confirm that you want to add ${this.props.user.username} as a friend.`;
         if (window.confirm(message)) {
             this.setState({ loadingStatus: true });
@@ -26,8 +24,6 @@ class FriendResult extends Component {
     }
 
     render() {
-        console.log(this.props.user.username);
-        console.log(this.state)
         return (
             <React.Fragment>
                 <div className="friendCard friendResult">

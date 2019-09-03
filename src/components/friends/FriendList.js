@@ -2,16 +2,26 @@ import React, { Component } from 'react';
 import FriendSearch from './FriendSearch';
 import FriendDataManager from './FriendDataManager';
 // import the components we will need
-import { Button } from 'reactstrap';
 
 class FriendList extends Component {
     state = {
         activeUserId: parseInt(sessionStorage.getItem("credentials")),
+        connections: [],
         friends: []
     }
 
     componentDidMount() {
-        // all the connections in which activeUserId matches connection.userId and save them to state
+        // get all the connections in which activeUserId matches connection.userId and save them to state
+        FriendDataManager.getConnections(this.state.activeUserId).then(connections => {
+            this.setState({ connections: connections });
+            const friendUsers = connections.map(connection => {
+                console.log(connection);
+                return FriendDataManager.getUser(connection.friendId)
+            })
+            this.setState({friends: friendUsers})
+        })
+
+        
     }
 
     saveNewConnection = (connectionObject) => {
@@ -19,6 +29,7 @@ class FriendList extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <React.Fragment>
                 <FriendSearch 
