@@ -42,8 +42,16 @@ deleteTask = (id) => {
     })
   }
 
-  completedTask  = (obj) =>  {
-    console.log(obj, "fuck")
+  completedTaskResults = (id) => {
+    return TaskDataManager.editTask(id)
+    .then(() => {
+      TaskDataManager.getAllTasks()
+      .then((tasks) => {
+        this.setState({
+            tasks: tasks,
+        })
+      })
+    })
   }
 
   postEditedTask = (id) => {
@@ -57,6 +65,7 @@ deleteTask = (id) => {
       })
     })
   }
+
 
 render(){
     return(
@@ -72,7 +81,7 @@ render(){
             task={task}
             deleteTask={this.deleteTask}
             postEditedTask={this.postEditedTask}
-            checkedTask={this.checkedTask}
+            completedTaskResults={this.completedTaskResults}
             {...this.props}
           />
         )}

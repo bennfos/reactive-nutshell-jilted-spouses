@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TaskEditModal from './TaskEditModal'
-// import TaskCheckbox from './TaskCheckbox'
+import TaskCheckbox from './TaskCheckbox'
 
 class TaskCard extends Component {
 
@@ -10,6 +10,9 @@ class TaskCard extends Component {
         <div className="taskCardContent">
           <h3>Name: {this.props.task.taskName}</h3>
           <p>Complete By: {this.props.task.date}</p>
+          <TaskCheckbox 
+          {...this.props}
+          completedTaskResults={this.props.completedTaskResults}/>
           <br/>
           <br/>
           <TaskEditModal 
@@ -17,8 +20,7 @@ class TaskCard extends Component {
           postEditedTask={this.props.postEditedTask}
           />
           <button type="button" onClick={() => this.props.deleteTask(this.props.task.id)}>Delete</button>
-          <button type="checkbox" onClick={console.log("hi")}></button>
-        </div>
+      </div>
       </div>
     );
   }
