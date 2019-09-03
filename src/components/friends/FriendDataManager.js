@@ -16,13 +16,18 @@ export default {
         }).then(response => response.json());
     },
 
-    getConnections(activeUser) {
-        return fetch(`${remoteURL}/connections/?userId=${activeUser}`)
+    getConnections() {
+        return fetch(`${remoteURL}/connections`)
             .then(response => response.json())
     },
 
     getUser(id) {
         return fetch(`${remoteURL}/users/${id}`)
+            .then(response => response.json());
+    },
+
+    getAllUsers() {
+        return fetch(`${remoteURL}/users`)
             .then(response => response.json());
     }
 }

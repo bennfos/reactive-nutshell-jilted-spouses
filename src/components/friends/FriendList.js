@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import FriendSearch from './FriendSearch';
 import FriendDataManager from './FriendDataManager';
+import FriendCard from './FriendCard';
 // import the components we will need
 
 class FriendList extends Component {
     state = {
         activeUserId: parseInt(sessionStorage.getItem("credentials")),
         connections: [],
-        friends: []
+        userFriends: [],
+        friendFriends: []
     }
 
     componentDidMount() {
-        // get all the connections in which activeUserId matches connection.userId and save them to state
-        FriendDataManager.getConnections(this.state.activeUserId).then(connections => {
-            this.setState({ connections: connections });
-            const friendUsers = connections.map(connection => {
-                console.log(connection);
-                return FriendDataManager.getUser(connection.friendId)
-            })
-            this.setState({friends: friendUsers})
-        })
+        // Get all the connections where the activeUserId matches either the userId or friendId, then get the user for each connection by getting the item that does not match the activeUserId
+        FriendDataManager.getConnections().then(connections => {
 
-        
+            const userConnections = connections.filter(connection => {
+                if (this.state.activeUserId === connection.userId ||
+                    this.state.activeUserId === connection.friendId) {
+                        return connection
+                }
+            })
+
+            this.setState({ connections: userConnections })
+        })
     }
 
     saveNewConnection = (connectionObject) => {
@@ -29,7 +32,7 @@ class FriendList extends Component {
     }
 
     render() {
-        console.log(this.state);
+        console.log("state", this.state);
         return (
             <React.Fragment>
                 <FriendSearch 
@@ -37,10 +40,30 @@ class FriendList extends Component {
                     saveNewConnection={this.saveNewConnection}
                 />
                 <h1>My Friends</h1>
+                <div className="container-friendCards">
+                    {this.state.connections.map(connection =>
+                        <FriendCard
+                            key={connection.id}
+                            connection={connection}
+                            {...this.props}
+                        />
+                    )}
+                </div>
             </React.Fragment>
         )
     }
 }
 
 export default FriendList;
+
+{/* <div className="container-cards">
+    {this.state.animals.map(animal =>
+        <AnimalCard
+            key={animal.id}
+            animal={animal}
+            deleteAnimal={this.deleteAnimal}
+            {...this.props}
+        />
+    )}
+</div> */}
 
