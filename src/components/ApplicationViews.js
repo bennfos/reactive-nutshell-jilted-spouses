@@ -3,6 +3,7 @@ import React, { Component } from "react";
 //import Chat from "./chat/ChatList";
 import EventMain from "./events/EventMain"
 import Auth from "./auth/Auth"
+import TaskMain from "./tasks/TaskMain";
 
 export default class ApplicationViews extends Component {
 
@@ -41,7 +42,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/tasks" render={props => {
-            return null
+            return <TaskMain {...props} />
             // Remove null and return the component which will show the user's tasks
           }}
         />

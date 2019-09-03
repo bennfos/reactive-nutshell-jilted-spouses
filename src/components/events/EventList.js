@@ -10,7 +10,7 @@ class EventList extends Component {
     state = {
         events: []
     }
-
+    
 componentDidMount(){
     EventDataManager.getAllEvents()
     .then((events) => {
@@ -32,7 +32,6 @@ return EventDataManager.postEvent(eventObject)
     })
   })
 }
-
 
 deleteEvent = (id) => {
     EventDataManager.deleteEvent(id)
@@ -57,8 +56,6 @@ deleteEvent = (id) => {
       })
     })
   }
-
-
 
 render(){
     return(

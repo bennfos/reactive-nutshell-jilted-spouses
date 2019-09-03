@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import EventDataManager from './EventDataManager'
+import TaskDataManager from './TaskDataManager'
 
-class EventEditModal extends Component {
+class TaskEditModal extends Component {
     state = {
-        events: [],
-        eventName: "",
+        tasks: [],
+        taskName: "",
         date: "",
-        eventLocation: "",
+        isCompleted: false,
         loadingStatus: false,
     };
     
     constructor(props) {
         super(props);
         this.state = {
-            events: [],
-            eventName: "",
+            tasks: [],
+            taskName: "",
             date: "",
-            eventLocation: "",
+            isCompleted: false,
+            loadingStatus: false,
             modal: false
         };
 
@@ -36,32 +37,29 @@ class EventEditModal extends Component {
         this.setState(stateToChange);
     };
 
-    editExistingEvent = (event) => {
+    editExistingTask = (event) => {
         event.preventDefault();
-        if (this.state.eventName === ""||
-        this.state.date === "" ||
-        this.state.eventLocation === "") {
+        if (this.state.taskName === ""||
+        this.state.date === "") {
             alert("Please fill out all fields");
         } else {
             this.setState({ loadingStatus: true });
-            const editedEvent = {
-                id: this.props.event.id,
-                eventName: this.state.eventName,
-                date: this.state.date,
-                eventLocation: this.state.eventLocation
+            const editedTask = {
+                id: this.props.task.id,
+                taskName: this.state.taskName,
+                date: this.state.date
             };
-            this.props.postEditedEvent(editedEvent)
+            this.props.postEditedTask(editedTask)
             .then(this.toggle)
     }
 };
 
     componentDidMount() {
-        EventDataManager.getEvent(this.props.event.id)
-        .then(event => {
+        TaskDataManager.getTask(this.props.task.id)
+        .then(task => {
             this.setState({
-            eventName: event.eventName,
-            date: event.date,
-            eventLocation: event.eventLocation,
+            taskName: task.taskName,
+            date: task.date,
             loadingStatus: false,
             });
         });
@@ -70,7 +68,7 @@ class EventEditModal extends Component {
     render(){
         return(
             <>
-            <section className="eventSectionContent">
+            <section className="taskSectionContent">
             <Button type="button"
             color="success"
             onClick={this.toggle}>
@@ -83,28 +81,22 @@ class EventEditModal extends Component {
             className={this.props.className}
 
             >
-                <ModalHeader toggle={this.toggle}>New Event</ModalHeader>
+                <ModalHeader toggle={this.toggle}>New Task</ModalHeader>
                 <ModalBody>
                 <form>
                     <fieldset>
-                        <div className="newEventForm">
+                        <div className="newTaskForm">
                             <input onChange={this.handleFieldChange} type="text"
-                                id="eventName"
-                                value={this.state.eventName}
-                                placeholder="Event Name"
+                                id="taskName"
+                                value={this.state.taskName}
+                                placeholder="Task Name"
                                 required
                                 autoFocus=""
                             /><br/>
                             <input onChange={this.handleFieldChange} type="date"
                                 id="date"
                                 value={this.state.date}
-                                placeholder="Date"
-                                required
-                            /><br/>
-                            <input onChange={this.handleFieldChange} type="text"
-                                id="eventLocation"
-                                value={this.state.eventLocation}
-                                placeholder="Location"
+                                placeholder="Complete By:"
                                 required
                             /><br/>
                         </div>
@@ -112,7 +104,7 @@ class EventEditModal extends Component {
                 </form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.editExistingEvent}>Save</Button>{' '}
+                    <Button color="primary" onClick={this.editExistingTask}>Save</Button>{' '}
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
@@ -122,4 +114,4 @@ class EventEditModal extends Component {
     }
 }
 
-export default EventEditModal
+export default TaskEditModal

@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
+import TaskEditModal from './TaskEditModal'
 
-class EventCard extends Component {
+class TaskCard extends Component {
+
   render() {
     return (
-      <div className="eventCard">
-        <div className="eventCardContent">
-          <h3>Name: {this.props.event.eventName}</h3>
-          <p>Date:{this.props.event.eventLocation}</p>
-          <input type="checkbox">: {this.props.event.isCompleted}</input>
-          {/* <button type="button"
-          onClick={() => {this.props.history.push(`/tasks/${this.props.task.id}/edit`)}}>Edit</button>
-          <button type="button" onClick={() => this.props.deleteTask(this.props.animal.id)}>Delete</button> */}
+      <div className="taskCard">
+        <div className="taskCardContent">
+          <h3>Name: {this.props.task.taskName}</h3>
+          <p>Complete By: {this.props.task.date}</p>
+          <input type="checkbox"></input>
+          <br/>
+          <br/>
+          <TaskEditModal 
+          {...this.props}
+          postEditedTask={this.props.postEditedTask}
+          />
+          <button type="button" onClick={() => this.props.deleteTask(this.props.task.id)}>Delete</button>
         </div>
       </div>
     );
   }
 }
 
-export default EventCard;
+export default TaskCard;
