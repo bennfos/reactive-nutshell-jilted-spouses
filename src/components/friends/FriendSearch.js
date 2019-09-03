@@ -65,8 +65,6 @@ class FriendSearch extends Component {
                                 </fieldset>
                             </form>
 
-                            
-
                             <div className="searchResults">
                                 {this.state.foundUsers.map(user => 
                                     <FriendResult 
@@ -79,7 +77,7 @@ class FriendSearch extends Component {
                         </ModalBody>
                         <ModalFooter>
                             <Button color="primary" onClick={this.searchUsers}>Search</Button>{' '}
-                            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                            <Button color="secondary" onClick={this.toggle}>I'm Done</Button>
                         </ModalFooter>
                     </Modal>
                 </div>
@@ -89,55 +87,3 @@ class FriendSearch extends Component {
 }
 
 export default FriendSearch;
-
-// render(){
-//     return (
-//         <>
-//             <section className="eventSectionContent">
-//                 <Button type="button"
-//                     color="success"
-//                     onClick={this.toggle}>
-//                     New Event
-//             </Button>
-//             </section>
-//             <div>
-//                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-//                     <ModalHeader toggle={this.toggle}>Sign up</ModalHeader>
-//                     <ModalBody>
-//                         <form>
-//                             <fieldset>
-//                                 <div className="loginForm">
-//                                     <input onChange={this.handleFieldChange} type="email"
-//                                         id="email"
-//                                         placeholder="Email address"
-//                                         required
-//                                         autoFocus=""
-//                                     /><br />
-//                                     <input onChange={this.handleFieldChange} type="text"
-//                                         id="username"
-//                                         placeholder="Username"
-//                                         required
-//                                     /><br />
-//                                     <input onChange={this.handleFieldChange} type="password"
-//                                         id="password"
-//                                         placeholder="Password"
-//                                         required
-//                                     /><br />
-//                                     <input onChange={this.handleFieldChange} type="password"
-//                                         id="confirmPassword"
-//                                         placeholder="Confirm Password"
-//                                         required
-//                                     />
-//                                 </div>
-//                             </fieldset>
-//                         </form>
-//                     </ModalBody>
-//                     <ModalFooter>
-//                         <Button color="primary" onClick={this.handleRegister}>Sign up</Button>{' '}
-//                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-//                     </ModalFooter>
-//                 </Modal>
-//             </div>
-//         </>
-//     )
-// }

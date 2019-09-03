@@ -3,6 +3,15 @@ import React, { Component } from 'react'
 import { Button } from 'reactstrap';
 
 class FriendList extends Component {
+    state = {
+        activeUserId: parseInt(sessionStorage.getItem("credentials")),
+        friends: []
+    }
+
+    componentDidMount() {
+        // all the connections in which activeUserId matches connection.userId and save them to state
+    }
+
     render() {
         return (
             <h1>My Friends</h1>
