@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import EventDataManager from './EventDataManager';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-
 
 class EventNewModal extends Component {
     state = {
@@ -40,11 +37,11 @@ class EventNewModal extends Component {
 
     constructNewEvent = event => {
         event.preventDefault();
-        // if (this.state.eventName === ""||
-        // this.state.date === "" ||
-        // this.state.eventLocation === "") {
-        //     alert("Please fill out all fields");
-        // } else {
+        if (this.state.eventName === ""||
+        this.state.date === "" ||
+        this.state.eventLocation === "") {
+            alert("Please fill out all fields");
+        } else {
             this.setState({ loadingStatus: true });
             const newEvent = {
                 eventName: this.state.eventName,
@@ -53,7 +50,8 @@ class EventNewModal extends Component {
             };
             this.props.addEvent(newEvent)
             .then(this.toggle)
-    };
+    }
+};
 
     render(){
         return(

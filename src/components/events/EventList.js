@@ -46,6 +46,20 @@ deleteEvent = (id) => {
     })
   }
 
+  postEditedEvent = (id) => {
+    return EventDataManager.editEvent(id)
+    .then(() => {
+      EventDataManager.getAllEvents()
+      .then((events) => {
+        this.setState({
+            events: events,
+        })
+      })
+    })
+  }
+
+
+
 render(){
     return(
       <React.Fragment>
@@ -59,6 +73,7 @@ render(){
             key={event.id}
             event={event}
             deleteEvent={this.deleteEvent}
+            postEditedEvent={this.postEditedEvent}
             {...this.props}
           />
         )}

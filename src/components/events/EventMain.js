@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EventList from "./EventList"
-import EventNewModal from "./EventNewModal"
 //import EventDataManager from './EventDataManager'
 
 
