@@ -9,7 +9,9 @@ class FriendSearch extends Component {
         this.state = {
             foundUsers: [],
             searchInput: "",
-            modal: false
+            modal: false,
+            userId: parseInt(sessionStorage.getItem("credentials")),
+            loadingStatus:false
         }
 
         this.toggle = this.toggle.bind(this);
@@ -21,7 +23,7 @@ class FriendSearch extends Component {
         this.setState(stateToChange);
     }
 
-    toggle() {
+    toggle = () => {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
@@ -36,6 +38,8 @@ class FriendSearch extends Component {
         })
         
     }
+
+
 
     render() {
         console.log(this.state)
@@ -67,10 +71,12 @@ class FriendSearch extends Component {
 
                             <div className="searchResults">
                                 {this.state.foundUsers.map(user => 
-                                    <FriendResult 
+                                    <FriendResult
                                         key={user.id}
                                         user={user}
                                         {...this.props}
+                                        saveNewConnection={this.props.saveNewConnection}
+                                        toggle={this.toggle}
                                     />
                                 )}
                             </div>

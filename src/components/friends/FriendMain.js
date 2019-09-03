@@ -7,7 +7,6 @@ class FriendMain extends Component {
     render() {
         return (
             <React.Fragment>
-                <FriendSearch {...this.props} />
                 <FriendList {...this.props} />
             </React.Fragment>
         )

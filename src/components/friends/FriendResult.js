@@ -9,18 +9,19 @@ class FriendResult extends Component {
 
     constructConnection = (event) => {
         event.preventDefault();
+        this.props.toggle();
+        console.log("constructConnection");
         const message = `Please confirm that you want to add ${this.props.user.username} as a friend.`;
         if (window.confirm(message)) {
-            this.setState( {loadingStatus: true });
-            
+            this.setState({ loadingStatus: true });
+
             const newConnection = {
                 userId: this.state.userId,
                 friendId: this.props.user.id
             };
 
             // Save the connection and redirect user to FriendMain
-            FriendDataManager.saveConnection(newConnection)
-                .then(() => this.props.history.push("/friends"));
+            this.props.saveNewConnection(newConnection);
         }
     }
 
