@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-//import the components we will need
 import TaskCard from './TaskCard'
 import TaskDataManager from './TaskDataManager'
-//import { Button } from 'reactstrap';
 import TaskNewModal from './TaskNewModal'
 
 class TaskList extends Component {
@@ -44,6 +42,10 @@ deleteTask = (id) => {
     })
   }
 
+  completedTask  = (obj) =>  {
+    console.log(obj, "fuck")
+  }
+
   postEditedTask = (id) => {
     return TaskDataManager.editTask(id)
     .then(() => {
@@ -70,6 +72,7 @@ render(){
             task={task}
             deleteTask={this.deleteTask}
             postEditedTask={this.postEditedTask}
+            checkedTask={this.checkedTask}
             {...this.props}
           />
         )}

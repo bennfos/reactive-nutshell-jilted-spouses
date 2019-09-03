@@ -54,6 +54,7 @@ class TaskEditModal extends Component {
     }
 };
 
+
     componentDidMount() {
         TaskDataManager.getTask(this.props.task.id)
         .then(task => {
@@ -77,9 +78,7 @@ class TaskEditModal extends Component {
             </section>
             <div>
             <Modal isOpen={this.state.modal} toggle={this.toggle}
-            
             className={this.props.className}
-
             >
                 <ModalHeader toggle={this.toggle}>New Task</ModalHeader>
                 <ModalBody>
