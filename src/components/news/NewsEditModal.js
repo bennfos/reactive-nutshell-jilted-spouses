@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import EventDataManager from './EventDataManager'
+import NewsDataManager from './NewsDataManager'
 
-class EventEditModal extends Component {
+class NewsEditModal extends Component {
     state = {
-        events: [],
-        eventName: "",
-        date: "",
-        eventLocation: "",
+        news: [],
+        title: "",
+        url: "",
+        synopsis: "",
         loadingStatus: false,
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            events: [],
-            eventName: "",
-            date: "",
-            eventLocation: "",
+            news: [],
+            title: "",
+            url: "",
+            synopsis: "",
             modal: false
         };
 
@@ -36,32 +36,33 @@ class EventEditModal extends Component {
         this.setState(stateToChange);
     };
 
-    editExistingEvent = (event) => {
+    editExistingNewsItem = (event) => {
         event.preventDefault();
-        if (this.state.eventName === ""||
-        this.state.date === "" ||
-        this.state.eventLocation === "") {
+        if (this.state.title === ""||
+        this.state.url === "" ||
+        this.state.synopsis === "") {
             alert("Please fill out all fields");
         } else {
+            console.log(this.props)
             this.setState({ loadingStatus: true });
-            const editedEvent = {
-                id: this.props.event.id,
-                eventName: this.state.eventName,
-                date: this.state.date,
-                eventLocation: this.state.eventLocation
+            const editedNewsItem = {
+                id: this.props.newsItem.id,
+                title: this.state.title,
+                url: this.state.url,
+                synopsis: this.state.synopsis
             };
-            this.props.postEditedEvent(editedEvent)
+            this.props.postEditedNewsItem(editedNewsItem)
             .then(this.toggle)
     }
 };
 
     componentDidMount() {
-        EventDataManager.getEvent(this.props.event.id)
-        .then(event => {
+        NewsDataManager.getNewsItem(this.props.newsItem.id)
+        .then(newsItem => {
             this.setState({
-            eventName: event.eventName,
-            date: event.date,
-            eventLocation: event.eventLocation,
+            title: newsItem.title,
+            url: newsItem.url,
+            synopsis: newsItem.synopsis,
             loadingStatus: false,
             });
         });
@@ -83,28 +84,25 @@ class EventEditModal extends Component {
             className={this.props.className}
 
             >
-                <ModalHeader toggle={this.toggle}>New Event</ModalHeader>
+                <ModalHeader toggle={this.toggle}>Edit News</ModalHeader>
                 <ModalBody>
                 <form>
                     <fieldset>
-                        <div className="newEventForm">
+                        <div className="editNewsForm">
                             <input onChange={this.handleFieldChange} type="text"
-                                id="eventName"
-                                value={this.state.eventName}
-                                placeholder="Event Name"
+                                id="title"
+                                value={this.state.title}
                                 required
                                 autoFocus=""
                             /><br/>
-                            <input onChange={this.handleFieldChange} type="date"
-                                id="date"
-                                value={this.state.date}
-                                placeholder="Date"
+                            <textarea onChange={this.handleFieldChange}
+                                id="synopsis"
+                                value={this.state.synopsis}
                                 required
                             /><br/>
-                            <input onChange={this.handleFieldChange} type="text"
-                                id="eventLocation"
-                                value={this.state.eventLocation}
-                                placeholder="Location"
+                            <input onChange={this.handleFieldChange} type="url"
+                                id="url"
+                                value={this.state.url}
                                 required
                             /><br/>
                         </div>
@@ -112,7 +110,7 @@ class EventEditModal extends Component {
                 </form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.editExistingEvent}>Save</Button>{' '}
+                    <Button color="primary" onClick={this.editExistingNewsItem}>Save</Button>{' '}
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
@@ -122,4 +120,4 @@ class EventEditModal extends Component {
     }
 }
 
-export default EventEditModal
+export default NewsEditModal

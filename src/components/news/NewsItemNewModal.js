@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import NewsDataManager from './NewsDataManager'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-
-
-class NewsForm extends Component {
-
+class NewsItemNewModal extends Component {
     state = {
         news: [],
+        userId: 0,
         title: "",
         url: "",
         synopsis: "",
@@ -29,86 +26,84 @@ class NewsForm extends Component {
         this.toggle = this.toggle.bind(this);
     }
 
-    componentDidMount() {
-        NewsDataManager.getAllNews()
-            .then(news => {
-                this.setState({
-                    news: news
-                })
-            })
-    }
-
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
     }
 
-    handleFieldChange = event => {
+    handleFieldChange = evt => {
         const stateToChange = {};
-        stateToChange[event.target.id] = event.target.value;
+        stateToChange[evt.target.id] = evt.target.value;
         this.setState(stateToChange);
+        console.log(stateToChange)
     };
 
-
     constructNewNewsItem = event => {
+        console.log(this.state)
         event.preventDefault();
         if (this.state.title === ""||
-        this.state.url === "" ||
-        this.state.synopsis === "") {
+        this.state.synopsis === "" ||
+        this.state.url === "") {
             alert("Please fill out all fields");
         } else {
             this.setState({ loadingStatus: true });
-            const newsItem = {
+            const newNewsItem = {
                 title: this.state.title,
-                url: this.state.url,
+                userId: parseInt(sessionStorage.getItem("credentials")),
                 synopsis: this.state.synopsis,
+                url: this.state.url,
                 timestamp: new Date().toLocaleString()
             };
-            this.addNewsItem
-        }
-    };
+            this.props.addNewsItem(newNewsItem)
+            .then(this.toggle)
+    }
+};
 
     render(){
         return(
             <>
-            <section className="newsSectionContent">
+            <section className="eventSectionContent">
             <Button type="button"
             color="success"
-            onClick={this.props.toggle}>
-            New Article
+            onClick={this.toggle}>
+            Add News Item
             </Button>
             </section>
             <div>
-            <Modal isOpen={this.props.state.modal} toggle={this.props.toggle} className={this.props.className}>
-                <ModalHeader toggle={this.props.toggle}>Add Article</ModalHeader>
+            <Modal isOpen={this.state.modal} toggle={this.toggle}
+
+            className={this.props.className}
+
+            >
+                <ModalHeader toggle={this.toggle}>New News Item</ModalHeader>
                 <ModalBody>
                 <form>
                     <fieldset>
-                        <div className="addNewsItemForm">
-                            <input onChange={this.props.handleFieldChange} type="text"
+                        <div className="newNewsItemForm">
+                        <input onChange={this.handleFieldChange} type="text"
                                 id="title"
-                                placeholder="Title of article"
+                                placeholder="Title"
                                 required
                                 autoFocus=""
                             /><br/>
-                            <input onChange={this.props.handleFieldChange} type="text"
+                            <textarea onChange={this.handleFieldChange}
+                                id="synopsis"
+                                placeholder="Synopsis"
+                                required
+                            /><br/>
+                            <input onChange={this.handleFieldChange} type="url"
                                 id="url"
                                 placeholder="URL"
                                 required
                             /><br/>
-                            <textarea onChange={this.props.handleFieldChange}
-                                id="synopsis"
-                                placeholder="Synopsis"
-                                required
-                            ></textarea><br/>
                         </div>
                     </fieldset>
                 </form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.props.constructNewNewsItem}>Submit</Button>{' '}
-                    <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
+                    <Button color="primary" onClick={this.constructNewNewsItem}>Save</Button>{' '}
+                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
         </div>
@@ -117,4 +112,4 @@ class NewsForm extends Component {
     }
 }
 
-export default NewsForm
+export default NewsItemNewModal

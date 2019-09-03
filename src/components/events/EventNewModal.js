@@ -9,7 +9,7 @@ class EventNewModal extends Component {
         eventLocation: "",
         loadingStatus: false,
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -45,6 +45,7 @@ class EventNewModal extends Component {
             this.setState({ loadingStatus: true });
             const newEvent = {
                 eventName: this.state.eventName,
+                userId: parseInt(sessionStorage.getItem("credentials")),
                 date: this.state.date,
                 eventLocation: this.state.eventLocation
             };
@@ -65,7 +66,7 @@ class EventNewModal extends Component {
             </section>
             <div>
             <Modal isOpen={this.state.modal} toggle={this.toggle}
-            
+
             className={this.props.className}
 
             >
