@@ -36,7 +36,10 @@ export default class ApplicationViews extends Component {
         />
         <Route
           path="/events" render={props => {
+            if (this.isAuthenticated()) {
             return <EventMain {...props} />
+            }
+            return <Auth {...props}/>
           }}
         />
 
@@ -49,8 +52,10 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/news" render={props => {
-            return <NewsMain {...props} />
-            // Remove null and return the component which will show the user's tasks
+            if (this.isAuthenticated()) {
+            return <NewsMain {...props}/>
+            }
+            return <Auth {...props}/>
           }}
         />
 

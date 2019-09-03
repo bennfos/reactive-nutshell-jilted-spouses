@@ -3,6 +3,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import NewsDataManager from './NewsDataManager'
 
 class NewsEditModal extends Component {
+
+//Defines initial state
     state = {
         news: [],
         title: "",
@@ -24,38 +26,50 @@ class NewsEditModal extends Component {
         this.toggle = this.toggle.bind(this);
     }
 
+//Displays/hides the edit modal
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
     }
 
+//Sets state with input values as fields change
     handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
         this.setState(stateToChange);
     };
 
+
     editExistingNewsItem = (event) => {
         event.preventDefault();
+
+    //Validates user input
         if (this.state.title === ""||
         this.state.url === "" ||
         this.state.synopsis === "") {
             alert("Please fill out all fields");
         } else {
-            console.log(this.props)
             this.setState({ loadingStatus: true });
+
+        //creates a new object for the edited news item,
             const editedNewsItem = {
                 id: this.props.newsItem.id,
                 title: this.state.title,
+                userId: parseInt(sessionStorage.getItem("credentials")),
                 url: this.state.url,
                 synopsis: this.state.synopsis
             };
+            console.log(editedNewsItem.id)
+        //posts the object to the database
             this.props.postEditedNewsItem(editedNewsItem)
+
+        //closes the modal
             .then(this.toggle)
     }
 };
 
+//Gets the id of the news item that is being edited and sets state to populate the input fields
     componentDidMount() {
         NewsDataManager.getNewsItem(this.props.newsItem.id)
         .then(newsItem => {

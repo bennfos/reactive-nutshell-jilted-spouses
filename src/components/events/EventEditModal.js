@@ -46,6 +46,7 @@ class EventEditModal extends Component {
             this.setState({ loadingStatus: true });
             const editedEvent = {
                 id: this.props.event.id,
+                userId: parseInt(sessionStorage.getItem("credentials")),
                 eventName: this.state.eventName,
                 date: this.state.date,
                 eventLocation: this.state.eventLocation

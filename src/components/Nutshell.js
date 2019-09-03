@@ -7,7 +7,7 @@ class Nutshell extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar {...this.props}/>
         <ApplicationViews />
       </React.Fragment>
     );

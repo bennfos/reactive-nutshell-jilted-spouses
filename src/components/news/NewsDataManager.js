@@ -1,12 +1,15 @@
 const remoteURL = "http://localhost:5002"
 
 export default {
+
+//All methods that fetch the news data, with varying parameters and/or methods
+
     getNewsItem(id) {
         return fetch(`${remoteURL}/news/${id}`)
             .then(response => response.json());
     },
-    getAllNews() {
-        return fetch(`${remoteURL}/news`)
+    getAllNews(userId) {
+        return fetch(`${remoteURL}/news?userId=${userId}`)
             .then(response => response.json());
     },
     postNewsItem(newsObject) {

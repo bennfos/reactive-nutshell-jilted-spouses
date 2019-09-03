@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class NewsItemNewModal extends Component {
+
+//Defines initial state
     state = {
         news: [],
         userId: 0,
         title: "",
-        url: "",
+        url: "http://",
         synopsis: "",
         timestamp: "",
         loadingStatus: false,
@@ -26,12 +28,14 @@ class NewsItemNewModal extends Component {
         this.toggle = this.toggle.bind(this);
     }
 
+//Displays/hides the new article modal
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
     }
 
+//Sets state with input values as fields change
     handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
@@ -42,12 +46,16 @@ class NewsItemNewModal extends Component {
     constructNewNewsItem = event => {
         console.log(this.state)
         event.preventDefault();
+
+    //Validates user input
         if (this.state.title === ""||
         this.state.synopsis === "" ||
         this.state.url === "") {
             alert("Please fill out all fields");
         } else {
             this.setState({ loadingStatus: true });
+
+        //creates a new object for the edited news item,
             const newNewsItem = {
                 title: this.state.title,
                 userId: parseInt(sessionStorage.getItem("credentials")),
@@ -55,7 +63,11 @@ class NewsItemNewModal extends Component {
                 url: this.state.url,
                 timestamp: new Date().toLocaleString()
             };
+
+        //posts the object to the database, gets all news items, updates state of news array
             this.props.addNewsItem(newNewsItem)
+
+        //closes the modal
             .then(this.toggle)
     }
 };
@@ -67,7 +79,7 @@ class NewsItemNewModal extends Component {
             <Button type="button"
             color="success"
             onClick={this.toggle}>
-            Add News Item
+            Add Article
             </Button>
             </section>
             <div>
@@ -94,7 +106,7 @@ class NewsItemNewModal extends Component {
                             /><br/>
                             <input onChange={this.handleFieldChange} type="url"
                                 id="url"
-                                placeholder="URL"
+                                value={this.state.url}
                                 required
                             /><br/>
                         </div>

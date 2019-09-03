@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import NewsEditModal from './NewsEditModal'
 
 class NewsCard extends Component {
+
+  //Renders an individual news card with an article title, synopsis, link to URL, and edit and delete buttons.
+  
   render() {
     return (
       <div className="newsCard">
