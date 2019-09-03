@@ -27,7 +27,7 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/messages" render={props => {
+          path="/chat" render={props => {
             return null
             // Remove null and return the component which will show the messages
           }}
