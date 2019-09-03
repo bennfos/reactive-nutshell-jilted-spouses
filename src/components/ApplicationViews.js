@@ -1,6 +1,6 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
-import Chat from "./chat/ChatList";
+//import Chat from "./chat/ChatList";
 import EventMain from "./events/EventMain"
 import Auth from "./auth/Auth"
 import FriendMain from "./friends/FriendMain";
@@ -37,7 +37,6 @@ export default class ApplicationViews extends Component {
         <Route
           path="/events" render={props => {
             return <EventMain {...props} />
-            // Remove null and return the component which will show the user's tasks
           }}
         />
 

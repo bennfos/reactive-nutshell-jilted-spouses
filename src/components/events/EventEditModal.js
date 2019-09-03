@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import EventDataManager from './EventDataManager';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import EventDataManager from './EventDataManager'
 
-
-
-class EventForm extends Component {
+class EventNewModal extends Component {
     state = {
+        events: [],
         eventName: "",
         date: "",
         eventLocation: "",
@@ -15,11 +14,10 @@ class EventForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: [],
-            email: "",
-            username: "",
-            password: "",
-            confirmPassword: "",
+            events: [],
+            eventName: "",
+            date: "",
+            eventLocation: "",
             modal: false
         };
 
@@ -38,7 +36,7 @@ class EventForm extends Component {
         this.setState(stateToChange);
     };
 
-    constructNewEvent = event => {
+    editExistingEvent = (event) => {
         event.preventDefault();
         if (this.state.eventName === ""||
         this.state.date === "" ||
@@ -46,15 +44,28 @@ class EventForm extends Component {
             alert("Please fill out all fields");
         } else {
             this.setState({ loadingStatus: true });
-            const event = {
+            const editedEvent = {
+                id: this.props.event.id,
                 eventName: this.state.eventName,
                 date: this.state.date,
                 eventLocation: this.state.eventLocation
             };
-            EventDataManager.postEvent(event)
-            .then(() => this.props.history.push("/events"));
-        }
-    };
+            this.props.postEditedEvent(editedEvent)
+            .then(this.toggle)
+    }
+};
+
+    componentDidMount() {
+        EventDataManager.getEvent(this.props.event.id)
+        .then(event => {
+            this.setState({
+            eventName: event.eventName,
+            date: event.date,
+            eventLocation: event.eventLocation,
+            loadingStatus: false,
+            });
+        });
+    }
 
     render(){
         return(
@@ -63,43 +74,45 @@ class EventForm extends Component {
             <Button type="button"
             color="success"
             onClick={this.toggle}>
-            New Event
+            Edit
             </Button>
             </section>
             <div>
-            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                <ModalHeader toggle={this.toggle}>Sign up</ModalHeader>
+            <Modal isOpen={this.state.modal} toggle={this.toggle}
+            
+            className={this.props.className}
+
+            >
+                <ModalHeader toggle={this.toggle}>New Event</ModalHeader>
                 <ModalBody>
                 <form>
                     <fieldset>
-                        <div className="loginForm">
-                            <input onChange={this.handleFieldChange} type="email"
-                                id="email"
-                                placeholder="Email address"
+                        <div className="newEventForm">
+                            <input onChange={this.handleFieldChange} type="text"
+                                id="eventName"
+                                value={this.state.eventName}
+                                placeholder="Event Name"
                                 required
                                 autoFocus=""
                             /><br/>
+                            <input onChange={this.handleFieldChange} type="date"
+                                id="date"
+                                value={this.state.date}
+                                placeholder="Date"
+                                required
+                            /><br/>
                             <input onChange={this.handleFieldChange} type="text"
-                                id="username"
-                                placeholder="Username"
+                                id="eventLocation"
+                                value={this.state.eventLocation}
+                                placeholder="Location"
                                 required
                             /><br/>
-                            <input onChange={this.handleFieldChange} type="password"
-                                id="password"
-                                placeholder="Password"
-                                required
-                            /><br/>
-                            <input onChange={this.handleFieldChange} type="password"
-                                id="confirmPassword"
-                                placeholder="Confirm Password"
-                                required
-                            />
                         </div>
                     </fieldset>
                 </form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.handleRegister}>Sign up</Button>{' '}
+                    <Button color="primary" onClick={this.editExistingEvent}>Save</Button>{' '}
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
@@ -109,4 +122,4 @@ class EventForm extends Component {
     }
 }
 
-export default EventForm
+export default EventNewModal
