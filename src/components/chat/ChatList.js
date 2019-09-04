@@ -75,7 +75,8 @@ class ChatList extends Component {
         .then(() => ChatDataManager.getAllChatsWithUser())
         .then(chats => {
           this.setState({
-            chats: chats
+            chats: chats,
+            message: ""
           });
           console.log(this.state.chats);
         });
