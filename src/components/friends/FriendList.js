@@ -59,18 +59,6 @@ class FriendList extends Component {
         })
     }
 
-    // deleteEvent = (id) => {
-    //     EventDataManager.deleteEvent(id)
-    //         .then(() => {
-    //             EventDataManager.getAllEvents()
-    //                 .then((events) => {
-    //                     this.setState({
-    //                         events: events
-    //                     })
-    //                 })
-    //         })
-    // }
-
     render() {
         console.log("state", this.state);
         return (
