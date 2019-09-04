@@ -4,6 +4,8 @@ import ChatMain from "./chat/ChatMain";
 import EventMain from "./events/EventMain";
 import Auth from "./auth/Auth";
 import NewsMain from "./news/NewsMain";
+import FriendMain from "./friends/FriendMain";
+import TaskMain from "./tasks/TaskMain";
 
 export default class ApplicationViews extends Component {
   isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
@@ -20,10 +22,12 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/friends"
-          render={props => {
-            return null;
-            // Remove null and return the component which will show list of friends
+          path="/friends" render={props => {
+            // Render FriendList component when user goes to '/friends'
+            if (this.isAuthenticated()) {
+              return <FriendMain {...props} />
+            }
+              return <Auth {...props} />
           }}
         />
 
@@ -44,10 +48,11 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/tasks"
-          render={props => {
-            return null;
-            // Remove null and return the component which will show the user's tasks
+          path="/tasks" render={props => {
+            if (this.isAuthenticated()) {
+            return <TaskMain {...props} />
+            }
+            return <Auth {...props}/>
           }}
         />
 

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import EventList from "./EventList"
+import FriendList from './FriendList';
 
-class EventMain extends Component {
+class FriendMain extends Component {
 
     render() {
         return (
             <React.Fragment>
-                <EventList {...this.props}/>
+                <FriendList {...this.props} />
             </React.Fragment>
         )
     }
 }
 
-export default EventMain
+export default FriendMain;

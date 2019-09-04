@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import EventList from "./EventList"
+import TaskList from "./TaskList"
 
-class EventMain extends Component {
+class TaskMain extends Component {
 
     render() {
         return (
             <React.Fragment>
-                <EventList {...this.props}/>
+                <TaskList {...this.props}/>
             </React.Fragment>
         )
     }
 }
 
-export default EventMain
+export default TaskMain
