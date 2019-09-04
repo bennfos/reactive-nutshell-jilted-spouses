@@ -66,14 +66,17 @@ deleteTask = (id) => {
     })
   }
 
-  completed = (props) => {
-    const testCompleted  =  props.isCompleted
-    if (testCompleted  === true) {
-      return null
-    }
+  completed = () => {
+    TaskDataManager.getAllTasks()
+    .then(tasks => tasks.map(task => 
+      {if (task.isCompleted === false) {
+        console.log(task, "false")
+      }}
+    ))
   }
-  
 
+  
+ 
 
 render(){
     return(
@@ -83,8 +86,9 @@ render(){
         addTask={this.addTask}
         /> 
       <div className="taskContainerCards">
-        {this.state.tasks.filter(this.completed(task) =>
-          return <TaskCard
+        {this.state.tasks.map(task =>
+        {if (task.isCompleted === false){
+         return <TaskCard
             key={task.id}
             task={task}
             deleteTask={this.deleteTask}
@@ -92,11 +96,11 @@ render(){
             completedTaskResults={this.completedTaskResults}
             {...this.props}
           />
-        )}
+        }
+      })}
       </div>
     </React.Fragment>
-    )
-  }
+)}
 }
 
 export default TaskList
