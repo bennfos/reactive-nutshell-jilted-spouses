@@ -1,55 +1,73 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-class EventNewModal extends Component {
+class NewsItemNewModal extends Component {
+
+//Defines initial state
     state = {
-        events: [],
-        eventName: "",
-        date: "",
-        eventLocation: "",
+        news: [],
+        userId: 0,
+        title: "",
+        url: "http://",
+        synopsis: "",
+        timestamp: "",
         loadingStatus: false,
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            events: [],
-            eventName: "",
-            date: "",
-            eventLocation: "",
+            news: [],
+            title: "",
+            url: "",
+            synopsis: "",
+            timestamp: "",
             modal: false
         };
 
         this.toggle = this.toggle.bind(this);
     }
 
+//Displays/hides the new article modal
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
     }
 
+//Sets state with input values as fields change
     handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
         this.setState(stateToChange);
+        console.log(stateToChange)
     };
 
-    constructNewEvent = event => {
+    constructNewNewsItem = event => {
+        console.log(this.state)
         event.preventDefault();
-        if (this.state.eventName === ""||
-        this.state.date === "" ||
-        this.state.eventLocation === "") {
+
+    //Validates user input
+        if (this.state.title === ""||
+        this.state.synopsis === "" ||
+        this.state.url === "") {
             alert("Please fill out all fields");
         } else {
             this.setState({ loadingStatus: true });
-            const newEvent = {
-                eventName: this.state.eventName,
+
+        //creates a new object for the edited news item,
+            const newNewsItem = {
+                title: this.state.title,
                 userId: parseInt(sessionStorage.getItem("credentials")),
-                date: this.state.date,
-                eventLocation: this.state.eventLocation
+                synopsis: this.state.synopsis,
+                url: this.state.url,
+                timestamp: new Date().toLocaleString()
             };
-            this.props.addEvent(newEvent)
+
+        //posts the object to the database, gets all news items, updates state of news array
+            this.props.addNewsItem(newNewsItem)
+
+        //closes the modal
             .then(this.toggle)
     }
 };
@@ -61,7 +79,7 @@ class EventNewModal extends Component {
             <Button type="button"
             color="success"
             onClick={this.toggle}>
-            New Event
+            Add Article
             </Button>
             </section>
             <div>
@@ -70,25 +88,25 @@ class EventNewModal extends Component {
             className={this.props.className}
 
             >
-                <ModalHeader toggle={this.toggle}>New Event</ModalHeader>
+                <ModalHeader toggle={this.toggle}>New News Item</ModalHeader>
                 <ModalBody>
                 <form>
                     <fieldset>
-                        <div className="newEventForm">
-                            <input onChange={this.handleFieldChange} type="text"
-                                id="eventName"
-                                placeholder="Event Name"
+                        <div className="newNewsItemForm">
+                        <input onChange={this.handleFieldChange} type="text"
+                                id="title"
+                                placeholder="Title"
                                 required
                                 autoFocus=""
                             /><br/>
-                            <input onChange={this.handleFieldChange} type="date"
-                                id="date"
-                                placeholder="Date"
+                            <textarea onChange={this.handleFieldChange}
+                                id="synopsis"
+                                placeholder="Synopsis"
                                 required
                             /><br/>
-                            <input onChange={this.handleFieldChange} type="text"
-                                id="eventLocation"
-                                placeholder="Location"
+                            <input onChange={this.handleFieldChange} type="url"
+                                id="url"
+                                value={this.state.url}
                                 required
                             /><br/>
                         </div>
@@ -96,7 +114,7 @@ class EventNewModal extends Component {
                 </form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.constructNewEvent}>Save</Button>{' '}
+                    <Button color="primary" onClick={this.constructNewNewsItem}>Save</Button>{' '}
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
@@ -106,4 +124,4 @@ class EventNewModal extends Component {
     }
 }
 
-export default EventNewModal
+export default NewsItemNewModal
