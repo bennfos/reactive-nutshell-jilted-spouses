@@ -25,7 +25,10 @@ export default class ApplicationViews extends Component {
         <Route
           path="/friends" render={props => {
             // Render FriendList component when user goes to '/friends'
-            return <FriendMain {...props} />
+            if (this.isAuthenticated()) {
+              return <FriendMain {...props} />
+            }
+              return <Auth {...props} />
           }}
         />
 
