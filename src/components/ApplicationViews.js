@@ -46,8 +46,10 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/tasks" render={props => {
+            if (this.isAuthenticated()) {
             return <TaskMain {...props} />
-            // Remove null and return the component which will show the user's tasks
+            }
+            return <Auth {...props}/>
           }}
         />
 
