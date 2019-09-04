@@ -10,15 +10,23 @@ class ChatCard extends Component {
             <p>
               {this.props.chat.user.username}: {this.props.chat.message}
             </p>
-            <button className="chatEdit" onClick={() => this.props.populateInput(this.props.chat.id)}>
-            Edit
-            </button>
-            <button
-              id="chatDelete"
-              onClick={() => this.props.deleteChats(this.props.chat.id)}
-            >
-              Delete
-            </button>
+            {this.props.activeUser() === this.props.chat.userId && (
+              <div className="chatBtns">
+                <button
+                  className="chatEdit"
+                  onClick={() => this.props.populateInput(this.props.chat.id)}
+                >
+                  Edit
+                </button>
+                <button
+                  id="chatDelete"
+                  onClick={() => this.props.deleteChats(this.props.chat.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
+            {/* end of chat btns  */}
           </div>
           {/* end of chats section  */}
         </div>

@@ -9,6 +9,8 @@ import TaskMain from "./tasks/TaskMain";
 
 export default class ApplicationViews extends Component {
   isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
+  activeUser = () => parseInt(sessionStorage.getItem("credentials"))
+
 
   render() {
     return (
@@ -34,7 +36,7 @@ export default class ApplicationViews extends Component {
         <Route
           path="/Chat"
           render={props => {
-            return <ChatMain {...props} />;
+            return <ChatMain activeUser={this.activeUser} {...props} />;
           }}
         />
         <Route

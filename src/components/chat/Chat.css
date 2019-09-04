@@ -17,12 +17,15 @@
   padding: 5px 5px 5px 5px;
   width: auto;
 }
+.chatBtns {
+  margin-left: 55%;
+}
 .submitSection {
   text-align: center;
   margin: 5px;
 }
 #chatInput {
-  width: 45%;
+  width: 40%;
 }
 #chatEdit,
 #chatDelete {
