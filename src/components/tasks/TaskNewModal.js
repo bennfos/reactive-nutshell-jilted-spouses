@@ -4,6 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 class TaskNewModal extends Component {
     state = {
         tasks: [],
+        userId: parseInt(sessionStorage.getItem("credentials")),
         taskName: "",
         date: "",
         isCompleted: false,
@@ -14,6 +15,7 @@ class TaskNewModal extends Component {
         super(props);
         this.state = {
             tasks: [],
+            userId: parseInt(sessionStorage.getItem("credentials")),
             taskName: "",
             date: "",
             isCompleted: false,
@@ -44,6 +46,7 @@ class TaskNewModal extends Component {
             this.setState({ loadingStatus: true });
             const newTask = {
                 taskName: this.state.taskName,
+                userId: parseInt(sessionStorage.getItem("credentials")),
                 date: this.state.date,
                 isCompleted: this.state.isCompleted
             };

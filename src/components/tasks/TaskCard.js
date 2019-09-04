@@ -5,6 +5,20 @@ import { Button } from 'reactstrap';
 
 class TaskCard extends Component {
 
+  completeTask = (event) => {
+    event.preventDefault();
+        this.setState({ loadingStatus: true });
+        const completedTask = {
+            id: this.props.task.id,
+            userId: parseInt(sessionStorage.getItem("credentials")),
+            taskName: this.props.task.taskName,
+            date: this.props.task.date,
+            isCompleted: true
+        };
+        this.props.completedTaskResults(completedTask)
+        console.log(completedTask)
+  };
+
   render() {
     return (
       <div className="taskCard">
@@ -13,7 +27,8 @@ class TaskCard extends Component {
           <p>Complete By: {this.props.task.date}</p>
           <TaskCheckbox 
           {...this.props}
-          completedTaskResults={this.props.completedTaskResults}/>
+          completeTask={this.completeTask}
+          />
           <br/>
           <br/>
           <TaskEditModal 

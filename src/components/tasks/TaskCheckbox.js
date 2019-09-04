@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import TaskDataManager from './TaskDataManager'
 
 class TaskCheckbox extends Component {
-
   state = {
     tasks: [],
+    userId: parseInt(sessionStorage.getItem("credentials")),
     taskName: "",
     date: "",
     isCompleted: false,
@@ -17,26 +17,14 @@ handleFieldChange = evt => {
   this.setState(stateToChange);
 };
 
-completeTask = (event) => {
-  event.preventDefault();
-      this.setState({ loadingStatus: true });
-      const completedTask = {
-          id: this.props.task.id,
-          taskName: this.state.taskName,
-          date: this.state.date,
-          isCompleted: true
-      };
-      this.props.completedTaskResults(completedTask)
-      console.log(completedTask)
-};
-
 
 componentDidMount() {
   TaskDataManager.getTask(this.props.task.id)
   .then(task => {
       this.setState({
-      taskName: task.taskName,
-      date: task.date,
+      userId: parseInt(sessionStorage.getItem("credentials")),
+      taskName: this.props.task.taskName,
+      date: this.props.task.date,
       isCompleted: true,
       loadingStatus: false,
       });
@@ -47,10 +35,10 @@ render() {
   return(
     <div>
       <input 
-        onClick={this.completeTask}
+        onClick={this.props.completeTask}
         type="radio"
         id="isCompleted"
-        value={this.state.isCompleted}
+        value={this.props.isCompleted}
         >
       </input>
     </div>

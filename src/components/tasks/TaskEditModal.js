@@ -5,6 +5,7 @@ import TaskDataManager from './TaskDataManager'
 class TaskEditModal extends Component {
     state = {
         tasks: [],
+        userId: parseInt(sessionStorage.getItem("credentials")),
         taskName: "",
         date: "",
         isCompleted: false,
@@ -15,6 +16,7 @@ class TaskEditModal extends Component {
         super(props);
         this.state = {
             tasks: [],
+            userId: parseInt(sessionStorage.getItem("credentials")),
             taskName: "",
             date: "",
             isCompleted: false,
@@ -46,8 +48,10 @@ class TaskEditModal extends Component {
             this.setState({ loadingStatus: true });
             const editedTask = {
                 id: this.props.task.id,
+                userId: parseInt(sessionStorage.getItem("credentials")),
                 taskName: this.state.taskName,
-                date: this.state.date
+                date: this.state.date,
+                isCompleted: false
             };
             this.props.postEditedTask(editedTask)
             .then(this.toggle)
@@ -59,8 +63,10 @@ class TaskEditModal extends Component {
         TaskDataManager.getTask(this.props.task.id)
         .then(task => {
             this.setState({
+            userId: parseInt(sessionStorage.getItem("credentials")),
             taskName: task.taskName,
             date: task.date,
+            isCompleted: false,
             loadingStatus: false,
             });
         });
