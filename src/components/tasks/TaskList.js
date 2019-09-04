@@ -66,18 +66,6 @@ deleteTask = (id) => {
     })
   }
 
-  completed = () => {
-    TaskDataManager.getAllTasks()
-    .then(tasks => tasks.map(task => 
-      {if (task.isCompleted === false) {
-        console.log(task, "false")
-      }}
-    ))
-  }
-
-  
- 
-
 render(){
     return(
       <React.Fragment>
