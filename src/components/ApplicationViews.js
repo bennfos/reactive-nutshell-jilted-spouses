@@ -1,27 +1,27 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
-//import Chat from "./chat/ChatList";
-import EventMain from "./events/EventMain"
-import Auth from "./auth/Auth"
+import ChatMain from "./chat/ChatMain";
+import EventMain from "./events/EventMain";
+import Auth from "./auth/Auth";
+import NewsMain from "./news/NewsMain";
 import FriendMain from "./friends/FriendMain";
 import TaskMain from "./tasks/TaskMain";
-import NewsMain from "./news/NewsMain"
 
 export default class ApplicationViews extends Component {
+  isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
+  activeUser = () => parseInt(sessionStorage.getItem("credentials"))
 
-  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
   render() {
     return (
       <React.Fragment>
-
         <Route
-          exact path="/" render={props => {
-            return <Auth {...props}/>
-            }
-          }
+          exact
+          path="/"
+          render={props => {
+            return <Auth {...props} />;
+          }}
         />
-
 
         <Route
           path="/friends" render={props => {
@@ -34,17 +34,18 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/chat" render={props => {
-            return null
-            // Remove null and return the component which will show the messages
+          path="/Chat"
+          render={props => {
+            return <ChatMain activeUser={this.activeUser} {...props} />;
           }}
         />
         <Route
-          path="/events" render={props => {
+          path="/events"
+          render={props => {
             if (this.isAuthenticated()) {
-            return <EventMain {...props} />
+              return <EventMain {...props} />;
             }
-            return <Auth {...props}/>
+            return <Auth {...props} />;
           }}
         />
 
@@ -58,14 +59,14 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/news" render={props => {
+          path="/news"
+          render={props => {
             if (this.isAuthenticated()) {
-            return <NewsMain {...props}/>
+              return <NewsMain {...props} />;
             }
-            return <Auth {...props}/>
+            return <Auth {...props} />;
           }}
         />
-
       </React.Fragment>
     );
   }
