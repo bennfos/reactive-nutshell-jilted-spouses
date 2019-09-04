@@ -1,68 +1,82 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import EventDataManager from './EventDataManager'
+import NewsDataManager from './NewsDataManager'
 
-class EventEditModal extends Component {
+class NewsEditModal extends Component {
+
+//Defines initial state
     state = {
-        events: [],
-        eventName: "",
-        date: "",
-        eventLocation: "",
+        news: [],
+        title: "",
+        url: "",
+        synopsis: "",
         loadingStatus: false,
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            events: [],
-            eventName: "",
-            date: "",
-            eventLocation: "",
+            news: [],
+            title: "",
+            url: "",
+            synopsis: "",
             modal: false
         };
 
         this.toggle = this.toggle.bind(this);
     }
 
+//Displays/hides the edit modal
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
     }
 
+//Sets state with input values as fields change
     handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
         this.setState(stateToChange);
     };
 
-    editExistingEvent = (event) => {
+
+    editExistingNewsItem = (event) => {
         event.preventDefault();
-        if (this.state.eventName === ""||
-        this.state.date === "" ||
-        this.state.eventLocation === "") {
+
+    //Validates user input
+        if (this.state.title === ""||
+        this.state.url === "" ||
+        this.state.synopsis === "") {
             alert("Please fill out all fields");
         } else {
             this.setState({ loadingStatus: true });
-            const editedEvent = {
-                id: this.props.event.id,
+
+        //creates a new object for the edited news item,
+            const editedNewsItem = {
+                id: this.props.newsItem.id,
+                title: this.state.title,
                 userId: parseInt(sessionStorage.getItem("credentials")),
-                eventName: this.state.eventName,
-                date: this.state.date,
-                eventLocation: this.state.eventLocation
+                url: this.state.url,
+                synopsis: this.state.synopsis
             };
-            this.props.postEditedEvent(editedEvent)
+            console.log(editedNewsItem.id)
+        //posts the object to the database
+            this.props.postEditedNewsItem(editedNewsItem)
+
+        //closes the modal
             .then(this.toggle)
     }
 };
 
+//Gets the id of the news item that is being edited and sets state to populate the input fields
     componentDidMount() {
-        EventDataManager.getEvent(this.props.event.id)
-        .then(event => {
+        NewsDataManager.getNewsItem(this.props.newsItem.id)
+        .then(newsItem => {
             this.setState({
-            eventName: event.eventName,
-            date: event.date,
-            eventLocation: event.eventLocation,
+            title: newsItem.title,
+            url: newsItem.url,
+            synopsis: newsItem.synopsis,
             loadingStatus: false,
             });
         });
@@ -84,28 +98,25 @@ class EventEditModal extends Component {
             className={this.props.className}
 
             >
-                <ModalHeader toggle={this.toggle}>Edit Event</ModalHeader>
+                <ModalHeader toggle={this.toggle}>Edit News</ModalHeader>
                 <ModalBody>
                 <form>
                     <fieldset>
-                        <div className="newEventForm">
+                        <div className="editNewsForm">
                             <input onChange={this.handleFieldChange} type="text"
-                                id="eventName"
-                                value={this.state.eventName}
-                                placeholder="Event Name"
+                                id="title"
+                                value={this.state.title}
                                 required
                                 autoFocus=""
                             /><br/>
-                            <input onChange={this.handleFieldChange} type="date"
-                                id="date"
-                                value={this.state.date}
-                                placeholder="Date"
+                            <textarea onChange={this.handleFieldChange}
+                                id="synopsis"
+                                value={this.state.synopsis}
                                 required
                             /><br/>
-                            <input onChange={this.handleFieldChange} type="text"
-                                id="eventLocation"
-                                value={this.state.eventLocation}
-                                placeholder="Location"
+                            <input onChange={this.handleFieldChange} type="url"
+                                id="url"
+                                value={this.state.url}
                                 required
                             /><br/>
                         </div>
@@ -113,7 +124,7 @@ class EventEditModal extends Component {
                 </form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.editExistingEvent}>Save</Button>{' '}
+                    <Button color="primary" onClick={this.editExistingNewsItem}>Save</Button>{' '}
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
@@ -123,4 +134,4 @@ class EventEditModal extends Component {
     }
 }
 
-export default EventEditModal
+export default NewsEditModal

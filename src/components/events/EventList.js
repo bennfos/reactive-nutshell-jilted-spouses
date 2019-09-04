@@ -60,10 +60,10 @@ deleteEvent = (id) => {
 render(){
     return(
       <React.Fragment>
-       <EventNewModal 
+       <EventNewModal
         {...this.props}
         addEvent={this.addEvent}
-        /> 
+        />
       <div className="eventContainerCards">
         {this.state.events.map(event =>
           <EventCard
