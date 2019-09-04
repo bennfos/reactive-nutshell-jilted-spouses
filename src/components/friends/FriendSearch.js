@@ -31,10 +31,9 @@ class FriendSearch extends Component {
 
     searchUsers = event => {
         event.preventDefault();
-        console.log(this.state.searchInput);
+
         FriendDataManager.getUsers(this.state.searchInput).then(results => {
-            this.setState({ foundUsers: results });
-            console.log(this.state.foundUsers);
+            this.setState({ foundUsers: results, searchInput: "" });
         })
         
     }
@@ -63,6 +62,7 @@ class FriendSearch extends Component {
                                             type="text"
                                             id="searchInput"
                                             placeholder="Enter a name to search"
+                                            value={this.state.searchInput}
                                             autoFocus
                                         />
                                     </div>

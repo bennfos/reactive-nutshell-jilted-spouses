@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 class FriendResult extends Component {
     state = {
         userId: parseInt(sessionStorage.getItem("credentials")),
-        loadingStatus: false
+        loadingStatus: false,
+        isAdded: false
     }
 
     constructConnection = (event) => {
@@ -20,6 +21,7 @@ class FriendResult extends Component {
 
             // Save the connection and redirect user to FriendMain
             this.props.saveNewConnection(newConnection);
+            this.setState({ isAdded: true });
         }
     }
 
