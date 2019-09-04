@@ -3,11 +3,8 @@ import React, { Component } from "react";
 //import Chat from "./chat/ChatList";
 import EventMain from "./events/EventMain"
 import Auth from "./auth/Auth"
-<<<<<<< HEAD
 import FriendMain from "./friends/FriendMain";
-=======
 import NewsMain from "./news/NewsMain"
->>>>>>> master
 
 export default class ApplicationViews extends Component {
 
