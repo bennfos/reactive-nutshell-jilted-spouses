@@ -10,7 +10,9 @@ class ChatCard extends Component {
             <p>
               {this.props.chat.user.username}: {this.props.chat.message}
             </p>
-            <button className="chatEdit">Edit</button>
+            <button className="chatEdit" onClick={() => this.props.populateInput(this.props.chat.id)}>
+            Edit
+            </button>
             <button
               id="chatDelete"
               onClick={() => this.props.deleteChats(this.props.chat.id)}

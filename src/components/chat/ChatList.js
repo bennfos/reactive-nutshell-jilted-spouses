@@ -5,8 +5,10 @@ import ChatCard from "./ChatCard";
 class ChatList extends Component {
   state = {
     chats: [],
-    userId: parseInt(sessionStorage.getItem("credentials")),
+    userId: "",
     message: "",
+    chatId: "",
+    editedMessage: false,
     loadingStatus: false
   };
 
@@ -28,10 +30,21 @@ class ChatList extends Component {
       });
     });
   };
+
   handleFieldChange = evt => {
     const stateToChange = {};
     stateToChange[evt.target.id] = evt.target.value;
     this.setState(stateToChange);
+  };
+
+  populateInput = id => {
+    ChatDataManager.getChat(id).then(chat =>
+      this.setState({
+        message: chat.message,
+        editedMessage: true,
+        chatId: chat.id
+      })
+    );
   };
 
   constructNewChat = evt => {
@@ -40,17 +53,33 @@ class ChatList extends Component {
 
     this.setState({ loadingStatus: true });
     const chat = {
-      userId: this.state.userId,
+      userId: parseInt(sessionStorage.getItem("credentials")),
       message: this.state.message
     };
-    ChatDataManager.postChat(chat)
-      .then(()=>ChatDataManager.getAllChatsWithUser())
-      .then(chats => {
-        this.setState({
-          chats: chats
+
+    if (this.state.editedMessage) {
+      ChatDataManager.editChat(chat, this.state.chatId)
+        .then(() => ChatDataManager.getAllChatsWithUser())
+        .then(chats => {
+          this.setState({
+            chats: chats,
+            userId: "",
+            message: "",
+            chatId: "",
+            editedMessage: false
+          });
+          console.log(this.state.chats);
         });
-        console.log(this.state.chats);
-      });
+    } else {
+      ChatDataManager.postChat(chat)
+        .then(() => ChatDataManager.getAllChatsWithUser())
+        .then(chats => {
+          this.setState({
+            chats: chats
+          });
+          console.log(this.state.chats);
+        });
+    }
   };
 
   render() {
@@ -62,6 +91,7 @@ class ChatList extends Component {
               key={chat.id}
               chat={chat}
               deleteChats={this.deleteChats}
+              populateInput={this.populateInput}
               {...this.props}
             />
           ))}
@@ -71,12 +101,9 @@ class ChatList extends Component {
             id="message"
             onChange={this.handleFieldChange}
             placeholder="Chat with other users!"
+            value={this.state.message}
           />
-          <button
-            id="chatSubmitBtn"
-            disabled={this.state.loadingStatus}
-            onClick={this.constructNewChat}
-          >
+          <button id="chatSubmitBtn" onClick={this.constructNewChat}>
             Send
           </button>
         </div>

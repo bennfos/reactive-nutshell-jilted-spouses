@@ -27,13 +27,13 @@ export default {
         {method: "DELETE"
         }).then(response => response.json())
     },
-    editChat(editedChat) {
-        return fetch (`${remoteURL}/chat/${editedChat.id}`,  {
+    editChat(chatObj, id) {
+        return fetch (`${remoteURL}/chat/${id}`,  {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(editedChat)
+            body: JSON.stringify(chatObj)
         }).then(response => response.json());
     }
 }
