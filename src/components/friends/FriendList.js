@@ -28,8 +28,33 @@ class FriendList extends Component {
     }
 
     saveNewConnection = (connectionObject) => {
-        FriendDataManager.saveConnection(connectionObject);
+        return FriendDataManager.saveConnection(connectionObject).then(() => {
+                FriendDataManager.getConnections().then(connections => {
+
+                    const userConnections = connections.filter(connection => {
+                        if (this.state.activeUserId === connection.userId ||
+                            this.state.activeUserId === connection.friendId) {
+                            return connection
+                        }
+                    })
+
+                    this.setState({ connections: userConnections })
+                    });
+                });
     }
+
+    // // use fat arrow
+    // addEvent = (eventObject) => {
+    //     return EventDataManager.postEvent(eventObject)
+    //         .then(() => {
+    //             EventDataManager.getAllEvents()
+    //                 .then((events) => {
+    //                     this.setState({
+    //                         events: events
+    //                     })
+    //                 })
+    //         })
+    // }
 
     render() {
         console.log("state", this.state);
@@ -55,15 +80,4 @@ class FriendList extends Component {
 }
 
 export default FriendList;
-
-{/* <div className="container-cards">
-    {this.state.animals.map(animal =>
-        <AnimalCard
-            key={animal.id}
-            animal={animal}
-            deleteAnimal={this.deleteAnimal}
-            {...this.props}
-        />
-    )}
-</div> */}
 
