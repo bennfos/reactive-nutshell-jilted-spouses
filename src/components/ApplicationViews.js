@@ -3,6 +3,7 @@ import React, { Component } from "react";
 //import Chat from "./chat/ChatList";
 import EventMain from "./events/EventMain"
 import Auth from "./auth/Auth"
+import FriendMain from "./friends/FriendMain";
 import TaskMain from "./tasks/TaskMain";
 import NewsMain from "./news/NewsMain"
 
@@ -24,8 +25,11 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+            // Render FriendList component when user goes to '/friends'
+            if (this.isAuthenticated()) {
+              return <FriendMain {...props} />
+            }
+              return <Auth {...props} />
           }}
         />
 
