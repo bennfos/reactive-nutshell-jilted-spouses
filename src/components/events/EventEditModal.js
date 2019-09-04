@@ -83,7 +83,7 @@ class EventEditModal extends Component {
             className={this.props.className}
 
             >
-                <ModalHeader toggle={this.toggle}>New Event</ModalHeader>
+                <ModalHeader toggle={this.toggle}>Edit Event</ModalHeader>
                 <ModalBody>
                 <form>
                     <fieldset>

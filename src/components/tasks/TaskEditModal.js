@@ -80,7 +80,7 @@ class TaskEditModal extends Component {
             <Modal isOpen={this.state.modal} toggle={this.toggle}
             className={this.props.className}
             >
-                <ModalHeader toggle={this.toggle}>New Task</ModalHeader>
+                <ModalHeader toggle={this.toggle}>Edit Task</ModalHeader>
                 <ModalBody>
                 <form>
                     <fieldset>

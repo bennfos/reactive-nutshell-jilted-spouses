@@ -68,7 +68,7 @@ class TaskNewModal extends Component {
             className={this.props.className}
 
             >
-                <ModalHeader toggle={this.toggle}>New Event</ModalHeader>
+                <ModalHeader toggle={this.toggle}>New Task</ModalHeader>
                 <ModalBody>
                 <form>
                     <fieldset>

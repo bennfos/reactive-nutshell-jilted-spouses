@@ -66,6 +66,14 @@ deleteTask = (id) => {
     })
   }
 
+  completed = (props) => {
+    const testCompleted  =  props.isCompleted
+    if (testCompleted  === true) {
+      return null
+    }
+  }
+  
+
 
 render(){
     return(
@@ -75,8 +83,8 @@ render(){
         addTask={this.addTask}
         /> 
       <div className="taskContainerCards">
-        {this.state.tasks.map(task =>
-          <TaskCard
+        {this.state.tasks.filter(this.completed(task) =>
+          return <TaskCard
             key={task.id}
             task={task}
             deleteTask={this.deleteTask}

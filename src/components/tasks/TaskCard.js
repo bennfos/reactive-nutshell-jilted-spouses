@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TaskEditModal from './TaskEditModal'
 import TaskCheckbox from './TaskCheckbox'
+import { Button } from 'reactstrap';
 
 class TaskCard extends Component {
 
@@ -19,7 +20,7 @@ class TaskCard extends Component {
           {...this.props}
           postEditedTask={this.props.postEditedTask}
           />
-          <button type="button" onClick={() => this.props.deleteTask(this.props.task.id)}>Delete</button>
+          <Button color="secondary" onClick={() => this.props.deleteTask(this.props.task.id)}>Delete</Button>
       </div>
       </div>
     );
