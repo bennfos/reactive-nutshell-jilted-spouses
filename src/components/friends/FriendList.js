@@ -39,13 +39,28 @@ class FriendList extends Component {
                     })
 
                     this.setState({ connections: userConnections })
-                    });
                 });
+            });
     }
 
-    // // use fat arrow
-    // addEvent = (eventObject) => {
-    //     return EventDataManager.postEvent(eventObject)
+    deleteConnection = (id) => {
+        FriendDataManager.deleteConnection(id).then(() => {
+            FriendDataManager.getConnections().then(connections => {
+
+                const userConnections = connections.filter(connection => {
+                    if (this.state.activeUserId === connection.userId ||
+                        this.state.activeUserId === connection.friendId) {
+                        return connection
+                    }
+                })
+
+                this.setState({ connections: userConnections })
+            });
+        })
+    }
+
+    // deleteEvent = (id) => {
+    //     EventDataManager.deleteEvent(id)
     //         .then(() => {
     //             EventDataManager.getAllEvents()
     //                 .then((events) => {
@@ -70,6 +85,7 @@ class FriendList extends Component {
                         <FriendCard
                             key={connection.id}
                             connection={connection}
+                            deleteConnection={this.deleteConnection}
                             {...this.props}
                         />
                     )}

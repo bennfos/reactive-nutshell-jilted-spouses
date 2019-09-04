@@ -21,6 +21,13 @@ export default {
             .then(response => response.json())
     },
 
+    deleteConnection(id) {
+        return fetch(`${remoteURL}/connections/${id}`,
+            {
+                method: "DELETE"
+            }).then(response => response.json());
+    },
+
     getUser(id) {
         return fetch(`${remoteURL}/users/${id}`)
             .then(response => response.json());

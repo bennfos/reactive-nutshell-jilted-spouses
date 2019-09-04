@@ -28,7 +28,7 @@ class FriendCard extends Component {
                 <div className="friendCard">
                     <h3>username: {this.state.friend.username}</h3>
                     <h3>email: {this.state.friend.email}</h3>
-                    <button>Delete</button>
+                    <button onClick={() => this.props.deleteConnection(this.props.connection.id)}>Delete</button>
                 </div>
             </React.Fragment>
         )
