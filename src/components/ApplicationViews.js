@@ -3,6 +3,7 @@ import React, { Component } from "react";
 //import Chat from "./chat/ChatList";
 import EventMain from "./events/EventMain"
 import Auth from "./auth/Auth"
+import NewsMain from "./news/NewsMain"
 
 export default class ApplicationViews extends Component {
 
@@ -35,7 +36,10 @@ export default class ApplicationViews extends Component {
         />
         <Route
           path="/events" render={props => {
+            if (this.isAuthenticated()) {
             return <EventMain {...props} />
+            }
+            return <Auth {...props}/>
           }}
         />
 
@@ -43,6 +47,15 @@ export default class ApplicationViews extends Component {
           path="/tasks" render={props => {
             return null
             // Remove null and return the component which will show the user's tasks
+          }}
+        />
+
+        <Route
+          path="/news" render={props => {
+            if (this.isAuthenticated()) {
+            return <NewsMain {...props}/>
+            }
+            return <Auth {...props}/>
           }}
         />
 
