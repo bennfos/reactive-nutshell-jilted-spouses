@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import EventEditModal from './EventEditModal'
+import { Button } from 'reactstrap';
+
 
 class EventCard extends Component {
 
@@ -14,7 +16,7 @@ class EventCard extends Component {
           {...this.props}
           postEditedEvent={this.props.postEditedEvent}
           />
-          <button type="button" onClick={() => this.props.deleteEvent(this.props.event.id)}>Delete</button>
+          <Button onClick={() => this.props.deleteEvent(this.props.event.id)}>Delete</Button>
         </div>
       </div>
     );
