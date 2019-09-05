@@ -1,83 +1,73 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 //import the components we will need
-import EventCard from './EventCard'
-import EventDataManager from './EventDataManager'
+import EventCard from "./EventCard";
+import EventDataManager from "./EventDataManager";
 //import { Button } from 'reactstrap';
-import EventNewModal from './EventNewModal'
-
+import EventNewModal from "./EventNewModal";
+import "./Events.css";
 
 class EventList extends Component {
-    state = {
-        events: []
-    }
-    
-componentDidMount(){
-    EventDataManager.getAllEvents()
-    .then((events) => {
-        this.setState({
-            events: events
-        })
-    })
-}
+  state = {
+    events: []
+  };
 
-// use fat arrow
-addEvent = (eventObject) => {
-return EventDataManager.postEvent(eventObject)
-  .then(() => {
-    EventDataManager.getAllEvents()
-    .then((events) => {
-        this.setState({
-            events: events
-        })
-    })
-  })
-}
-
-deleteEvent = (id) => {
-    EventDataManager.deleteEvent(id)
-    .then(() => {
-      EventDataManager.getAllEvents()
-      .then((events) => {
-        this.setState({
-            events: events
-        })
-      })
-    })
+  componentDidMount() {
+    EventDataManager.getAllEvents().then(events => {
+      this.setState({
+        events: events
+      });
+    });
   }
 
-  postEditedEvent = (id) => {
-    return EventDataManager.editEvent(id)
-    .then(() => {
-      EventDataManager.getAllEvents()
-      .then((events) => {
+  // use fat arrow
+  addEvent = eventObject => {
+    return EventDataManager.postEvent(eventObject).then(() => {
+      EventDataManager.getAllEvents().then(events => {
         this.setState({
-            events: events,
-        })
-      })
-    })
-  }
+          events: events
+        });
+      });
+    });
+  };
 
-render(){
-    return(
+  deleteEvent = id => {
+    EventDataManager.deleteEvent(id).then(() => {
+      EventDataManager.getAllEvents().then(events => {
+        this.setState({
+          events: events
+        });
+      });
+    });
+  };
+
+  postEditedEvent = id => {
+    return EventDataManager.editEvent(id).then(() => {
+      EventDataManager.getAllEvents().then(events => {
+        this.setState({
+          events: events
+        });
+      });
+    });
+  };
+
+  render() {
+    return (
       <React.Fragment>
-       <EventNewModal
-        {...this.props}
-        addEvent={this.addEvent}
-        />
-      <div className="eventContainerCards">
-        {this.state.events.map(event =>
-          <EventCard
-            key={event.id}
-            event={event}
-            deleteEvent={this.deleteEvent}
-            postEditedEvent={this.postEditedEvent}
-            {...this.props}
-          />
-        )}
-      </div>
-    </React.Fragment>
-    )
+        <EventNewModal {...this.props} addEvent={this.addEvent} />
+        <div className="eventContainerCards">
+          {this.state.events.map(event => (
+            <EventCard
+              key={event.id}
+              event={event}
+              deleteEvent={this.deleteEvent}
+              postEditedEvent={this.postEditedEvent}
+              {...this.props}
+            />
+          ))}
+        </div>
+      </React.Fragment>
+    );
   }
 }
 
-export default EventList
+export default EventList;

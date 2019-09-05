@@ -1,0 +1,41 @@
+.container-friendCards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.btn {
+  margin: auto;
+  margin-top: 5px;
+  display: block;
+}
+.friendCard {
+  border: 5px solid #00bbf0;
+  width: 32%;
+  margin-top: 10px;
+  padding: 5px 5px 5px 5px;
+  text-align: center;
+  margin-right: 10px;
+  background-color: #d9faff;
+  color: #00204a;
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/meh.png"), auto;
+}
+.friendCard p {
+  color: #00204a;
+}
+.friendCard h3 {
+  color: #00204a;
+  font-weight: bolder;
+}
+.friendCard:hover {
+  background: #00204a;
+}
+.friendCard:hover p {
+  color: #00bbf0;
+}
+.friendCard:hover h3 {
+  color: #00bbf0;
+}
+.friendsH1 {
+  text-align: center;
+}

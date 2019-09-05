@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import UserDataManager from './UserDataManager';
+import './Login.css';
 
 class RegisterModal extends React.Component {
     constructor(props) {
@@ -64,7 +65,7 @@ class RegisterModal extends React.Component {
     render() {
         return (
             <div>
-                <Button color="danger" onClick={this.toggle}>Register</Button>
+                <Button className="registerbtn" color="danger" onClick={this.toggle}>Register</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Sign up</ModalHeader>
                     <ModalBody>

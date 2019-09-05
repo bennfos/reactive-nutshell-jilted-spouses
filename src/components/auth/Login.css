@@ -1,0 +1,16 @@
+.loginSection {
+  margin: auto;
+  width: 40%;
+  height: 50;
+  padding: 5px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.registerbtn {
+  margin: auto;
+  display: block;
+}
+form p {
+  margin-top: 15px;
+}
