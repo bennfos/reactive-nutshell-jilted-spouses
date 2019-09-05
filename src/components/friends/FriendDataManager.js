@@ -38,6 +38,12 @@ export default {
             .then(response => response.json());
     },
 
+    getFriendNews(id) {
+        return fetch(`${remoteURL}/users/${id}?_embed=news`)
+            .then(response => response.json());
+    },
+
+
     getAllUsers() {
         return fetch(`${remoteURL}/users`)
             .then(response => response.json());
