@@ -12,7 +12,6 @@ These are all of the skills and concepts that Energetic Beefcake used to create 
 1. Functions
 1. Databases/API
 1. Github
-1. Objects
 1. CSS
 1. React
 1. Reactstrap/Bootstrap
