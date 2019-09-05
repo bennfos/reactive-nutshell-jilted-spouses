@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  flex-basis: 40%;
 }
 .btn {
   margin: auto;
@@ -11,14 +12,15 @@
 }
 .eventCard {
   border: 5px solid #00bbf0;
-  width: 32%;
+  /* width: 32%; */
+  max-width: 10em;
+  min-width: 10em;
   margin-top: 10px;
   padding: 5px 5px 5px 5px;
   text-align: center;
   margin-right: 10px;
   background-color: #d9faff;
   color: #00204a;
-  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/meh.png"), auto;
 }
 .eventCard p {
   color: #00204a;
@@ -36,4 +38,3 @@
 .eventCard:hover h3 {
   color: #00bbf0;
 }
-

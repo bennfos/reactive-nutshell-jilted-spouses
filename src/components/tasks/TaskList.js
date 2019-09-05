@@ -6,11 +6,12 @@ import "./Tasks.css";
 
 class TaskList extends Component {
   state = {
-    tasks: []
+    tasks: [],
+    userId: parseInt(sessionStorage.getItem("credentials"))
   };
 
   componentDidMount() {
-    TaskDataManager.getAllTasks().then(tasks => {
+    TaskDataManager.getAllTasks(this.state.userId).then(tasks => {
       this.setState({
         tasks: tasks
       });
@@ -20,7 +21,7 @@ class TaskList extends Component {
   // use fat arrow
   addTask = taskObject => {
     return TaskDataManager.postTask(taskObject).then(() => {
-      TaskDataManager.getAllTasks().then(tasks => {
+      TaskDataManager.getAllTasks(this.state.userId).then(tasks => {
         this.setState({
           tasks: tasks
         });
@@ -30,7 +31,7 @@ class TaskList extends Component {
 
   deleteTask = id => {
     TaskDataManager.deleteTask(id).then(() => {
-      TaskDataManager.getAllTasks().then(tasks => {
+      TaskDataManager.getAllTasks(this.state.userId).then(tasks => {
         this.setState({
           tasks: tasks
         });
@@ -40,7 +41,7 @@ class TaskList extends Component {
 
   completedTaskResults = id => {
     return TaskDataManager.editTask(id).then(() => {
-      TaskDataManager.getAllTasks().then(tasks => {
+      TaskDataManager.getAllTasks(this.state.userId).then(tasks => {
         this.setState({
           tasks: tasks
         });
@@ -50,7 +51,7 @@ class TaskList extends Component {
 
   postEditedTask = id => {
     return TaskDataManager.editTask(id).then(() => {
-      TaskDataManager.getAllTasks().then(tasks => {
+      TaskDataManager.getAllTasks(this.state.userId).then(tasks => {
         this.setState({
           tasks: tasks
         });

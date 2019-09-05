@@ -12,6 +12,10 @@ export default {
         return fetch(`${remoteURL}/news?userId=${userId}`)
             .then(response => response.json());
     },
+    getUserNews() {
+        return fetch(`${remoteURL}/news?_embed=users`)
+            .then(response => response.json());
+    },
     postNewsItem(newsObject) {
         return fetch(`${remoteURL}/news`, {
             method: "POST",

@@ -21,7 +21,7 @@ class FriendCard extends Component {
   }
 
   render() {
-    console.log(this.props.friend);
+    console.log("friend", this.state.friend);
     return (
       <React.Fragment>
         <div className="friendCard">
