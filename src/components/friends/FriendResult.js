@@ -35,24 +35,6 @@ class FriendResult extends Component {
 
     render() {
 
-        // if (this.state.isAdded === false) {
-        //     return (
-        //         <React.Fragment>
-        //             <div className="friendCard friendResult">
-        //                 <h3>username: {this.props.user.username}</h3>
-        //                 <button
-        //                     disabled={this.state.loadingStatus}
-        //                     onClick={this.constructConnection}
-        //                 >Add Friend</button>
-        //             </div>
-        //         </React.Fragment>
-        //     )
-        // }
-
-        // return (
-        //     <h3>User already added</h3>
-        // )
-
         return (
             <React.Fragment>
                      <div className="friendCard friendResult">

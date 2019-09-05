@@ -5,10 +5,16 @@ export default {
         return fetch(`${remoteURL}/events/${id}`)
             .then(response => response.json());
     },  
-    getAllEvents() {
-        return fetch(`${remoteURL}/events`)
+    getAllEvents(userId) {
+        return fetch(`${remoteURL}/events/?userId=${userId}`)
             .then(response => response.json());
     },
+
+    getUserEvents(userId) {
+        return fetch(`${remoteURL}/users/${userId}?_embed=events`)
+            .then(response => response.json());
+    },
+
     postEvent(eventObject) {
         return fetch(`${remoteURL}/events`, {
             method: "POST",

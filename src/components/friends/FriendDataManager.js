@@ -29,7 +29,12 @@ export default {
     },
 
     getUser(id) {
-        return fetch(`${remoteURL}/users/${id}`)
+        return fetch(`${remoteURL}/users/${id}?_embed=news`)
+            .then(response => response.json());
+    },
+
+    getFriendEvents(id) {
+        return fetch(`${remoteURL}/users/${id}?_embed=events`)
             .then(response => response.json());
     },
 
