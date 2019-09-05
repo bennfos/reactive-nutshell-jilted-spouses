@@ -41,36 +41,66 @@ componentDidMount(){
 addEvent = (eventObject) => {
 return EventDataManager.postEvent(eventObject)
   .then(() => {
-    EventDataManager.getAllEvents()
-    .then((events) => {
-        this.setState({
-            events: events
+    EventDataManager.getAllEvents(this.state.userId)
+      .then((events) => {
+
+
+        FriendDataManager.getConnections().then(connections => {
+
+          const userConnections = connections.filter(connection => {
+            if (this.state.userId === connection.userId ||
+              this.state.userId === connection.friendId) {
+              return connection
+            }
+          })
+
+          this.setState({ connections: userConnections, events: events })
         })
-    })
+      })
   })
 }
 
 deleteEvent = (id) => {
     EventDataManager.deleteEvent(id)
     .then(() => {
-      EventDataManager.getAllEvents()
-      .then((events) => {
-        this.setState({
-            events: events
+      EventDataManager.getAllEvents(this.state.userId)
+        .then((events) => {
+
+
+          FriendDataManager.getConnections().then(connections => {
+
+            const userConnections = connections.filter(connection => {
+              if (this.state.userId === connection.userId ||
+                this.state.userId === connection.friendId) {
+                return connection
+              }
+            })
+
+            this.setState({ connections: userConnections, events: events })
+          })
         })
-      })
     })
   }
 
   postEditedEvent = (id) => {
     return EventDataManager.editEvent(id)
     .then(() => {
-      EventDataManager.getAllEvents()
-      .then((events) => {
-        this.setState({
-            events: events,
+      EventDataManager.getAllEvents(this.state.userId)
+        .then((events) => {
+
+
+          FriendDataManager.getConnections().then(connections => {
+
+            const userConnections = connections.filter(connection => {
+              if (this.state.userId === connection.userId ||
+                this.state.userId === connection.friendId) {
+                return connection
+              }
+            })
+
+            this.setState({ connections: userConnections, events: events })
+          })
         })
-      })
     })
   }
 
