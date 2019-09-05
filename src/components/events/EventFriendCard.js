@@ -7,7 +7,7 @@ class EventFriendCard extends Component {
         return (
             <React.Fragment>
                 <div className="eventCard">
-                    <div className="eventCardContent friendEvent">
+                    <div className="eventCardContent friendItem">
                         <h3>Name: {this.props.event.eventName}</h3>
                         <p>Location:{this.props.event.eventLocation}</p>
                         <p>Date: {this.props.event.date}</p>
