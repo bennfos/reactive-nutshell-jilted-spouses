@@ -1,5 +1,5 @@
 # Nutshell: The Information Dashboard
-### Creators (aka Energetic Beefcake)
+### Creators (aka Jilted Spouses)
 1. Joe Snyder
 1. Curtis Crutchfield
 1. Bennett Foster
