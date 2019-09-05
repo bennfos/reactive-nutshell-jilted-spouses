@@ -1,0 +1,41 @@
+.taskContainerCards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.btn {
+  margin: auto;
+  margin-top: 5px;
+  display: block;
+}
+.taskCard {
+  border: 5px solid #00bbf0;
+  width: 32%;
+  margin-top: 10px;
+  padding: 5px 5px 5px 5px;
+  text-align: center;
+  margin-right: 10px;
+  background-color: #d9faff;
+  color: #00204a;
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/meh.png"), auto;
+}
+.taskCard p {
+  color: #00204a;
+}
+.taskCard h3 {
+  color: #00204a;
+  font-weight: bolder;
+}
+.taskCard:hover {
+  background: #00204a;
+}
+.taskCard:hover p {
+  color: #00bbf0;
+}
+.taskCard:hover h3 {
+  color: #00bbf0;
+}
+div p:hover {
+  color: #00bbf0;
+}

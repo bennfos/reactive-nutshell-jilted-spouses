@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewsEditModal from './NewsEditModal'
+import "./News.css";
 
 class NewsCard extends Component {
 

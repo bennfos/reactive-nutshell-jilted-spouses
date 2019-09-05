@@ -1,0 +1,40 @@
+.eventContainerCards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-basis: 40%;
+}
+.btn {
+  margin: auto;
+  margin-top: 5px;
+  display: block;
+}
+.eventCard {
+  border: 5px solid #00bbf0;
+  /* width: 32%; */
+  max-width: 10em;
+  min-width: 10em;
+  margin-top: 10px;
+  padding: 5px 5px 5px 5px;
+  text-align: center;
+  margin-right: 10px;
+  background-color: #d9faff;
+  color: #00204a;
+}
+.eventCard p {
+  color: #00204a;
+}
+.eventCard h3 {
+  color: #00204a;
+  font-weight: bolder;
+}
+.eventCard:hover {
+  background: #00204a;
+}
+.eventCard:hover p {
+  color: #00bbf0;
+}
+.eventCard:hover h3 {
+  color: #00bbf0;
+}

@@ -1,24 +1,29 @@
 .container-cards {
-  border: 8px solid lightskyblue;
+  border: 8px solid #007bff;
   border-radius: 5%;
   padding: 15px 15px 15px 15px;
-  width: 75%;
+  width: 70%;
   height: auto;
   margin: auto;
   margin-top: 15px;
+  background-color: #00bbf0;
 }
+
 .chats {
   display: flex;
-  border: 2px solid goldenrod;
+  border: 5px solid goldenrod;
   background-color: lightskyblue;
-  opacity: 0.7;
+  opacity: 0.9;
   border-radius: 10%;
   margin: 8px 8px 8px 8px;
   padding: 5px 5px 5px 5px;
   width: auto;
 }
+.chats:hover {
+  background: #007bff;
+}
 .chatBtns {
-  margin-left: 55%;
+  margin-left: 58%;
 }
 .submitSection {
   text-align: center;

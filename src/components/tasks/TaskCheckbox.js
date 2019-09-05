@@ -1,5 +1,6 @@
-import React, { Component } from "react"
-import TaskDataManager from './TaskDataManager'
+import React, { Component } from "react";
+import TaskDataManager from "./TaskDataManager";
+import "./Tasks.css";
 
 class TaskCheckbox extends Component {
   state = {
@@ -8,42 +9,40 @@ class TaskCheckbox extends Component {
     taskName: "",
     date: "",
     isCompleted: false,
-    loadingStatus: false,
-};
+    loadingStatus: false
+  };
 
-handleFieldChange = evt => {
-  const stateToChange = {};
-  stateToChange[evt.target.id] = evt.target.value;
-  this.setState(stateToChange);
-};
+  handleFieldChange = evt => {
+    const stateToChange = {};
+    stateToChange[evt.target.id] = evt.target.value;
+    this.setState(stateToChange);
+  };
 
-
-componentDidMount() {
-  TaskDataManager.getTask(this.props.task.id)
-  .then(task => {
+  componentDidMount() {
+    TaskDataManager.getTask(this.props.task.id).then(task => {
       this.setState({
-      userId: parseInt(sessionStorage.getItem("credentials")),
-      taskName: this.props.task.taskName,
-      date: this.props.task.date,
-      isCompleted: true,
-      loadingStatus: false,
+        userId: parseInt(sessionStorage.getItem("credentials")),
+        taskName: this.props.task.taskName,
+        date: this.props.task.date,
+        isCompleted: true,
+        loadingStatus: false
       });
-  });
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Completed?</p>
+        <input
+          onClick={this.props.completeTask}
+          type="radio"
+          id="isCompleted"
+          value={this.props.isCompleted}
+        ></input>
+      </div>
+    );
+  }
 }
 
-render() {
-  return(
-    <div>
-      <input 
-        onClick={this.props.completeTask}
-        type="radio"
-        id="isCompleted"
-        value={this.props.isCompleted}
-        >
-      </input>
-    </div>
-  )
-}
-}
-
-export default TaskCheckbox
+export default TaskCheckbox;
