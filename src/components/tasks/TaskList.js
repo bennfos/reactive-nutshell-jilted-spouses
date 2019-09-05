@@ -5,11 +5,12 @@ import TaskNewModal from './TaskNewModal'
 
 class TaskList extends Component {
     state = {
-        tasks: []
+        tasks: [],
+        userId: parseInt(sessionStorage.getItem("credentials"))
     }
     
 componentDidMount(){
-    TaskDataManager.getAllTasks()
+    TaskDataManager.getAllTasks(this.state.userId)
     .then((tasks) => {
         this.setState({
             tasks: tasks
@@ -21,7 +22,7 @@ componentDidMount(){
 addTask = (taskObject) => {
 return TaskDataManager.postTask(taskObject)
   .then(() => {
-    TaskDataManager.getAllTasks()
+    TaskDataManager.getAllTasks(this.state.userId)
     .then((tasks) => {
         this.setState({
             tasks: tasks
@@ -33,7 +34,7 @@ return TaskDataManager.postTask(taskObject)
 deleteTask = (id) => {
     TaskDataManager.deleteTask(id)
     .then(() => {
-      TaskDataManager.getAllTasks()
+      TaskDataManager.getAllTasks(this.state.userId)
       .then((tasks) => {
         this.setState({
             tasks: tasks
@@ -45,7 +46,7 @@ deleteTask = (id) => {
   completedTaskResults = (id) => {
     return TaskDataManager.editTask(id)
     .then(() => {
-      TaskDataManager.getAllTasks()
+      TaskDataManager.getAllTasks(this.state.userId)
       .then((tasks) => {
         this.setState({
             tasks: tasks,
@@ -57,7 +58,7 @@ deleteTask = (id) => {
   postEditedTask = (id) => {
     return TaskDataManager.editTask(id)
     .then(() => {
-      TaskDataManager.getAllTasks()
+      TaskDataManager.getAllTasks(this.state.userId)
       .then((tasks) => {
         this.setState({
             tasks: tasks,
