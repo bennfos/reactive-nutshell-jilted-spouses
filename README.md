@@ -19,7 +19,7 @@ These are all of the skills and concepts that Energetic Beefcake used to create 
 1. Modals
 1. Data entry/editing
 1. Relational data
-1.Session Storage
+1. Session Storage
 
 ## How to Launch Nutshell
 
@@ -67,7 +67,16 @@ These are all of the skills and concepts that Energetic Beefcake used to create 
       "id": 1
     }
   ],
-  "news": [],
+  "news": [
+    {
+      "title": "Matrix 4 Coming Soon",
+      "userId": 3,
+      "synopsis": "We are living in the Keanussance",
+      "url": "https://www.yahoo.com/entertainment/fans-are-pumped-to-see-keanu-reeves-in-matrix-4-we-are-living-in-the-keanussance-234851660.html",
+      "timestamp": "9/5/2019, 10:16:09 AM",
+      "id": 1
+    }
+   ],
   "events": [
     {
       "eventName": "Present Nutshell",
