@@ -1,63 +1,103 @@
 # Nutshell: The Information Dashboard
+### Creators (aka Energetic Beefcake)
+1. Joe Snyder
+1. Curtis Crutchfield
+1. Bennett Foster
+1. Ellie Ash
+Nutshell is a dashboard for people to organize their daily tasks, events, news articles, friends, and chat messages.
 
-Nutshell is a new product offering that you have been tasked with building. It's a dashboard for people to use to organize their daily tasks, events, news article, friends, and chat messages.
+These are all of the skills and concepts that Energetic Beefcake used to create Nutshell.
 
-You will be using the React library to build out this application.
+1. Functions
+1. Databases/API
+1. Github
+1. Objects
+1. CSS
+1. React
+1. Reactstrap/Bootstrap
+1. Modals
+1. Data entry/editing
+1. Relational data
+1.Session Storage
 
-To start you off, here's an example of what the resources in your API should look like once it's populated with some data from your application.
+## How to Launch Nutshell
 
-### Users
+1. Clone the repository from Github
+1. Open your terminal and type the command "npm install" to install React
+1. In the main project directory, create a new directory called "API"
+1. In the API directory, create a file called "database.json"
+1. Copy the sample data below into database.json
+1. Run json-server in port 5002 with database.json
+1. In the terminal, type the command "npm start". You are now ready to use Nutshell!
 
-```json
-{ "id": 1, "username": "Steve", "email": "me@me.com" }
-```
-
-### Messages
-
-```json
-{ "id": 1, "userId": 1, "message": "What's up?" }
-```
-
-### News
-
+## Sample Data
 ```json
 {
-    "id": 1,
-    "userId": 2,
-    "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
-    "title": "Wormholes Allow Information to Escape Black Holes",
-    "synopsis": "Check out this recent discovery about workholes"
+  "users": [
+    {
+      "email": "joe@email.com",
+      "username": "joe",
+      "password": "1234",
+      "id": 1
+    },
+    {
+      "email": "ellie@email.com",
+      "username": "ellie",
+      "password": "1234",
+      "id": 2
+    },
+    {
+      "email": "bennett@email.com",
+      "username": "bennett",
+      "password": "1234",
+      "id": 3
+    },
+    {
+      "email": "curtis@email.com",
+      "username": "curtis",
+      "password": "1234",
+      "id": 4
+    }
+  ],
+  "chat": [
+    {
+      "userId": 4,
+      "message": "Welcome to the chat!",
+      "id": 1
+    }
+  ],
+  "news": [],
+  "events": [
+    {
+      "eventName": "Present Nutshell",
+      "date": "2019-09-05",
+      "userId": 2,
+      "eventLocation": "NSS",
+      "id": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "userId": 2,
+      "taskName": "Push to Github",
+      "date": "2019-09-05",
+      "isCompleted": false
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "taskName": "Do the dishes",
+      "date": "2019-09-01",
+      "isCompleted": false
+    }
+  ],
+  "connections": [
+    {
+      "id": 1,
+      "userId": 1,
+      "friendId": 2
+    }
+  ]
 }
-```
-
-### Friends
-
-```json
-{ "connectionId": 1, "userId": 1, "otherFriendId": 3 }
-```
-
-### Tasks
-
-```json
-{ "id": 1, "userId": 3, "task": "Take out garbage" }
-```
-
-## Professional Requirements
-
-1. All teammates must use React and JSON-server. 
-1. Each module should have a comment at the top with the following info: author(s) and purpose of module
-1. The README for your project should include instructions on how another person can download and run the application
-
-## How to Handle Authentication
-
-You will be using session storage to keep track of which user has logged into Nutshell. When the user fills out the registration form, you will POST their username and password to the `users` collection in your API. You will then immediately take the `id` of the object in the response and save it to session storage.
-
-```js
-sessionStorage.setItem("activeUser", user.id)
-```
-
-If you want to add a Logout feature, all you need to do it remove the session storage item.
-
-```js
-sessionStorage.removeItem("activeUser")
 ```
