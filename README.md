@@ -4,6 +4,7 @@
 1. Curtis Crutchfield
 1. Bennett Foster
 1. Ellie Ash
+
 Nutshell is a dashboard for people to organize their daily tasks, events, news articles, friends, and chat messages.
 
 These are all of the skills and concepts that Energetic Beefcake used to create Nutshell.
