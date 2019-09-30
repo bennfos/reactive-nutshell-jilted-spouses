@@ -35,77 +35,67 @@ These are all of the skills and concepts that Energetic Beefcake used to create 
 {
   "users": [
     {
-      "email": "joe@email.com",
-      "username": "joe",
-      "password": "1234",
+      "email": "e@e.com",
+      "username": "ellie",
+      "password": "123",
       "id": 1
     },
     {
-      "email": "ellie@email.com",
-      "username": "ellie",
-      "password": "1234",
+      "email": "b@b.com",
+      "username": "bryan",
+      "password": "123",
       "id": 2
     },
     {
-      "email": "bennett@email.com",
-      "username": "bennett",
-      "password": "1234",
+      "email": "1@1.com",
+      "username": "demo",
+      "password": "123",
       "id": 3
-    },
-    {
-      "email": "curtis@email.com",
-      "username": "curtis",
-      "password": "1234",
-      "id": 4
     }
   ],
-  "chat": [
-    {
-      "userId": 4,
-      "message": "Welcome to the chat!",
-      "id": 1
-    }
-  ],
-  "news": [
-    {
-      "title": "Matrix 4 Coming Soon",
-      "userId": 3,
-      "synopsis": "We are living in the Keanussance",
-      "url": "https://www.yahoo.com/entertainment/fans-are-pumped-to-see-keanu-reeves-in-matrix-4-we-are-living-in-the-keanussance-234851660.html",
-      "timestamp": "9/5/2019, 10:16:09 AM",
-      "id": 1
-    }
-   ],
-  "events": [
-    {
-      "eventName": "Present Nutshell",
-      "date": "2019-09-05",
-      "userId": 2,
-      "eventLocation": "NSS",
-      "id": 1
-    }
-  ],
-  "tasks": [
-    {
-      "id": 1,
-      "userId": 2,
-      "taskName": "Push to Github",
-      "date": "2019-09-05",
-      "isCompleted": false
-    },
-    {
-      "id": 3,
-      "userId": 2,
-      "taskName": "Do the dishes",
-      "date": "2019-09-01",
-      "isCompleted": false
-    }
-  ],
-  "connections": [
+  "reviews": [
     {
       "id": 1,
       "userId": 1,
-      "friendId": 2
+      "username": "ellie",
+      "locationId": 35,
+      "ratingTitle": "kinda spooky",
+      "review": "There were orbs in the pictures I took but I think my camera was just dirty",
+      "rating": 3
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "username": "bryan",
+      "locationId": 35,
+      "ratingTitle": "pretty spooky",
+      "review": "I definitely walked through a cold spot. Like, the air was definitely colder than normal.",
+      "rating": 4
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "username": "demo",
+      "locationId": 35,
+      "ratingTitle": "very spooky",
+      "review": ".....",
+      "rating": 5
+    }
+  ],
+  "savedLocations": [
+    {
+      "userId": 3,
+      "locationId": 119,
+      "title": "THE TEMPLE CEMETERY",
+      "location": "Temple Cemetery, 2001 15th Avenue North (inside cemetery)",
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "locationId": 128,
+      "title": "DUTCHMAN’S CURVE TRAIN WRECK",
+      "location": "White Bridge Pike at Richland Creek Greenway Trailhead",
+      "id": 2
     }
   ]
 }
