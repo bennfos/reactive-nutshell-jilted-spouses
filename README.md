@@ -23,7 +23,7 @@ These are all of the skills and concepts that Energetic Beefcake used to create 
 ## How to Launch Nutshell
 
 1. Clone the repository from Github
-1. Open your terminal and type the command "npm install" to install React
+1. Open your terminal and type the command "npm install" to install all dependencies
 1. In the main project directory, create a new directory called "API"
 1. In the API directory, create a file called "database.json"
 1. Copy the sample data below into database.json
