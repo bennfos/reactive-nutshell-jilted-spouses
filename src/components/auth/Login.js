@@ -64,7 +64,7 @@ class Login extends Component {
               />
             </div>
             <button type="submit">Sign In</button>
-            <p>Or</p>
+            <p>or</p>
           </fieldset>
         </form>
       </React.Fragment>

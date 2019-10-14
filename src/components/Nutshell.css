@@ -1,14 +1,14 @@
 body {
-  background-color: #00204a;
+  background-color: #f0f6ff;
   font-family: "Quicksand", sans-serif;
 }
 a {
-  color: #00bbf0;
+  color: darkgoldenrod;
   font-family: "Quicksand", sans-serif;
 }
 
 a:hover {
-  color: #d9faff;
+  color: darkgoldenrod;
   font-family: "Quicksand", sans-serif;
 }
 button {
@@ -30,9 +30,11 @@ button:hover {
 
 input {
   font-family: "Quicksand", sans-serif;
-  background-color: #d9faff;
+  background-color: #ffffff;
   border-style: none;
-  border-radius: 5px;
+  border-radius: 2px;
+  margin: 10px;
+
 }
 
 h3 {
@@ -47,7 +49,7 @@ h1 {
 }
 
 p {
-  color: #d9faff;
+  color: darkgoldenrod ;
   font-family: "Quicksand", sans-serif;
   /* margin: 1em; */
 }
