@@ -45,7 +45,7 @@ class Login extends Component {
       <React.Fragment>
         <form onSubmit={this.handleLogin}>
           <fieldset className="loginSection">
-            <h3>Please Log In</h3>
+            <h3>Welcome to Nutshell</h3>
             <div className="loginForm">
               <input
                 onChange={this.handleFieldChange}

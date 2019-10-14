@@ -2,9 +2,23 @@ import React, { Component } from "react";
 import "./Chat.css";
 
 class ChatCard extends Component {
+
+  state = {
+    chatFloat: "float-left"
+  }
+
+  componentDidMount () {
+    if (this.props.activeUser() === this.props.chat.userId) {
+      this.setState({
+        chatFloat: "float-right"
+      })
+    }
+  }
+
   render() {
     return (
-      <div className="chatCard">
+      <div className={this.state.chatFloat}>
+      <div className="chatCard" >
         <div className="chatCardContent">
           <div className="chats">
             <p>
@@ -31,6 +45,7 @@ class ChatCard extends Component {
           {/* end of chats section  */}
         </div>
         {/* end of chatCardContent section  */}
+      </div>
       </div>
     );
   }

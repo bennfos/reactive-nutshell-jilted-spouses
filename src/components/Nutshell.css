@@ -38,13 +38,13 @@ input {
 }
 
 h3 {
-  color: #d9faff;
+  color: #005792;
   font-family: "Quicksand", sans-serif;
   /* margin: 0em 0.5em 0.5em; */
 }
 
 h1 {
-  color: #d9faff;
+  color: #005792;
   font-family: "Quicksand", sans-serif;
 }
 
@@ -55,7 +55,7 @@ p {
 }
 
 .chats {
-  background-color: #00204a;
+  background-color: #ffffff;
   font-family: "Quicksand", sans-serif;
 }
 

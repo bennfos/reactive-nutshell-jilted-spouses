@@ -9,7 +9,8 @@ class ChatList extends Component {
     message: "",
     chatId: "",
     editedMessage: false,
-    loadingStatus: false
+    loadingStatus: false,
+    userChat: false
   };
 
   componentDidMount() {
